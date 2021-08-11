@@ -14,9 +14,22 @@ console.log(varNumber)
                 <div>
                     <h1>Logando informações</h1>
                 </div>
-                <div>
-                    <p><%= dados %></p>
+            </div>
+            <% if (dados != '') { %>
+                <div class="data-style-logs">
+                    <% for( let index of dados) { %>
+                        <div class="data-style-logs_items">
+                            <div class='data-style_div' >
+                                <p><%= index %></p>
+                            </div>
+                        </div>
+                    <% } %>
                 </div>
+            <% } else { %>
+                <div class="data-style-logs_error">
+                    <p>Nada a mostrar, ainda...</p>
+                </div>
+                <% } %>
             </div>
         </div>
     </main>

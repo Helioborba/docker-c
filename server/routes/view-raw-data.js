@@ -1,16 +1,18 @@
-import { Router } from 'express';
-const router = Router();
+// DEPRACATED
+// import { Router } from 'express';
+// const router = Router();
 
 // controllers
-import { getRawData, postRawData } from '../controllers/raw-data.js';
+// import { getRawData, postRawData } from '../controllers/raw-data.js';
 
 
 // Products
-const products = [];
-router.get('/view-raw', getRawData);  
+// const products = [];
+// router.get('/view-raw', getRawData);  
 
-router.post('/view-raw/post', postRawData);  
+// router.post('/view-raw/post', postRawData);  
 
-export const routes = router;
-const _products = products;
-export { _products as products };
+// export const routes = router;
+// const _products = products;
+// export { _products as products };
+// DEPRACATED 

@@ -1,4 +1,4 @@
-import db from '../connections/mysqlcon.js';
+import db from '../connections/mysql-con.js';
 
 // feito na velocidade
 // retorna conexoes com o banco

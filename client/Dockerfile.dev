@@ -9,9 +9,11 @@ WORKDIR "/client"
 COPY ./package.json ./
 RUN npm install
 COPY ./ ./
-#expose is beanstalk
+RUN npm run build 
 
-RUN npm run build
-
-FROM nginx 
-COPY --from=main  /client/build /usr/share/nginx/html 
+CMD ["npm","run","start"]
+# Parece que o NGINX bloqueia o client de utilizar volume, então para Dev é melhor retirar ele.
+# FROM nginx 
+EXPOSE 80
+# expose é do beanstalk ou melhor, qualquer cloud service
+# COPY --from=main  /client/build /usr/share/nginx/html 

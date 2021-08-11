@@ -1,10 +1,10 @@
-import Books from '../routes/books.js';
+import Books from '../models/books.js';
 
 export function getAddProduct(req, res, next) {
     res.render('add-product', {
         pageTitle: 'add product', 
         path : '/admin/add-product'
-        }); //change to sendfile if no template engine is working
+    }); //change to sendfile if no template engine is working
 }
 
 export function postAddProduct(req, res, next) {
@@ -20,11 +20,12 @@ export function postAddProduct(req, res, next) {
 }
 
 export function getShop(req, res, next) {
-    Books.fetchAll()
-    .then(([title]) => {
+    Books
+    .fetchAll()
+    .then( ([data]) => {
         res.render('shop', {
             pageTitle:"Items",
-            prods : title,
+            prods : data,
             path :'/'  
         });
     })

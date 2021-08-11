@@ -19,7 +19,7 @@ const FormCardapio = () => {
         const url2 = "http://localhost:8000/view-raw/post"
         event.preventDefault();
         const cardapioData = {
-            Alimento : 'farinha' // alimentoColocado
+            alimento : alimentoColocado // alimentoColocado
         }
         let tentativa = 2
         while (tentativa > 0) {
