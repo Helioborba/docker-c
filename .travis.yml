@@ -1,0 +1,24 @@
+sudo: required
+services:
+  - docker
+before_install:
+  - docker build -t borba/app -f Dockerfile.dev .
+  # - docker build -t borba/app -f ./client/Dockerfile.dev ./client
+  # - docker-compose build
+script:
+  # - docker-compose run -d server npm run start
+  # - docker-compose run -e CI=true client npm run test
+  - docker run -e CI=true borba/app npm run test # test
+  # test?
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker"
+  env: "Docker-env-1"
+  bucket_name: "elasticbeanstalk-us-east-1-182321959582"
+  bucket_path: "docker"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+
