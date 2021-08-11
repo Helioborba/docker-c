@@ -1,6 +1,6 @@
-import { Pool } from 'pg' // A mesma coisa que o mysql
-import { pgDatabase, pgHost, pgPassword, pgPort, pgUser } from '../keys'
-const pool = new Pool({
+import pg from 'pg' // A mesma coisa que o mysql
+import { pgDatabase, pgHost, pgPassword, pgPort, pgUser } from '../keys.js'
+const pool = new pg.Pool({
     user: pgUser,
     host: pgHost,
     database: pgDatabase,
@@ -8,4 +8,4 @@ const pool = new Pool({
     port: pgPort
 })
 
-export default pool.promise(); // 
+export default pool; // 

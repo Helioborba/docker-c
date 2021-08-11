@@ -7,9 +7,9 @@ const redisClient = redis.createClient({
     host: redisHost,
     port: redisPort,
     retry_strategy: () => 1000
-  });
-  
-const redisPublisher = redis.redisDuplicate(); // Parece que o Redis necessita disso, pois ele não consegue fazer handler de dois server ou algo do gênero
+});
+
+const redisPublisher = redisClient.duplicate() // Parece que o Redis necessita disso, pois ele não consegue fazer handler de dois server ou algo do gênero
   
 export function getRedis(req, res, next) { // serve para pegar todos os valores calculados pelo redis
     redisClient.hgetall('values', (err, values) => { 
@@ -21,27 +21,32 @@ export function getRedis(req, res, next) { // serve para pegar todos os valores 
 }
 
 export function postRedisAndPg(req, res, next) { // Precisa de um nome melhor...
-    const input = req.body.input;
-
+    const indice = req.body.indice; // Caso não haja indice, retornar algo com 'internal error' pois não vai haver valor para ser resolvido. erro discreto
+    
     // Redis
-    if (parseInt(input) > 40) {
+    if (parseInt(indice) > 40) {
         return res.status(422).send("O número é muito grande!"); // Bloquear de gastar... muito o redis
     }
     
-    redisClient.hset('values', input, "Ainda não há nada");
-    redisClient.publish('insert',index); // Execultado o trabalho de checagem do Fib
+    if (isNaN(parseInt(indice))  || indice === null) {
+        res.send({ error: 'Não foi inserido número!'})
+    } else {
+        redisClient.hSet('values', indice, "Ainda não há nada");
+        redisClient.publish('insert',indice); // Execultado o trabalho de checagem do Fib
+        
+        // Pg para inserir o resultado
+        const fib = new Fib(indice);
+        fib
+        .save()
+        .then( (res) => {
+            console.log(res);
+        })
+        .catch( (err) => {
+            console.log(err);
+        })
+        res.send({ working: true}); // esta sendo execultado a task
+    }
     
-    // Pg para inserir o resultado
-    const fib = new Fib(input);
-    fib
-    .save()
-    .then( (res) => {
-        console.log(res);
-    })
-    .catch( (err) => {
-        console.log(err);
-    })
-    res.send({ working: true}); // esta sendo execultado a task
 }
 
 export function getPg(req, res, next) { // Pega todos os valores na linha

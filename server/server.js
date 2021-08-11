@@ -4,9 +4,10 @@ import { join } from 'path';
 import cors from 'cors';
 import path from 'path';
 // Routes imports
-import { routes } from './routes/admin.js';
 import { routes as routesViewRaw } from './routes/view-raw.js';
+import admin from './routes/admin.js';
 import shop from './routes/shop.js';
+import apiCons from './routes/api-cons.js' // Também conhecido como endpoints
 import testPage from './routes/test-page.js';
 
 // const rawData = require('./routes/view-raw-data') // DESCONTINUADO
@@ -34,11 +35,12 @@ app.use( cors({
   })); // Origin:'http://localhost:3000' padrão para o react app, porém a API NÃO utiliza o 3000, é uma péssima ideia trocar.
 
 // Pages
-app.use('/admin', routes);
+app.use('/admin', admin);
 // app.use(rawData.routes); // DESCONTINUADO
 app.use(routesViewRaw);
 app.use(testPage);
 app.use(shop);
+app.use('/values', apiCons)
 app.use(page404);
 
 

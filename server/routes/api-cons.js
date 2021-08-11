@@ -1,12 +1,13 @@
 import { Router } from 'express';
-import { getPg, getRedis } from '../controllers/api-cons.js';
+import { getPg, getRedis, postRedisAndPg } from '../controllers/api-cons.js';
 const router = Router();
 
 // Todos os valores guardados
-router.get("/values/all", getPg)
+router.get("/all", getPg);
 
 // Valor que está guardado no momento
-router.get("/values/current", getRedis)
+router.get("/current", getRedis);
 
-router.post('/values', )
+router.post('/', postRedisAndPg);
+
 export default router;

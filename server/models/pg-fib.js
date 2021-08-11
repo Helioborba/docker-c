@@ -1,14 +1,19 @@
-import db from '../connections/pg-con' // Vai pegar o promise criado, depois tem que utilizar return na fib para execultar a tarefa
+import db from '../connections/pg-con.js' // Vai pegar o promise criado, depois tem que utilizar return na fib para execultar a tarefa
 
 export default class Fib{
-    constructor(input){
-        this.input = input
+    constructor(indice){
+        this.indice = indice
     }
 
     save() {
-        return db.query(
-            'INSERT INTO results(numbers) VALUES (?)', [this.input]
-        )
+        try{
+            return db.query(
+                'INSERT INTO results(numbers) VALUES (?)', [this.indice]
+            )
+        }
+        catch(err) {
+            console.log("erro no insert da query",err)
+        }
     }
 
     static allValues() {
