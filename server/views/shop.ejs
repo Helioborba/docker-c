@@ -1,0 +1,35 @@
+<%- include('includes/head.ejs')%>
+<link rel='stylesheet' href='/css/product.css' />
+<link rel='stylesheet' href='/css/forms.css' />
+</head>
+
+<body>
+    <%- include('includes/navigation.ejs')%>
+    <main>
+        <% if (prods.length > 0) { %>
+            <div class='grid'>
+                <% for(let product of prods) { %>
+                    <article class="card product-item">
+                        <header class="card__header">
+                                <h1 class='product__title'><%= product.title %></h1>
+                                <div class="card__image">
+                                    <img src='https://image.freepik.com/free-psd/book-cover-mockup_125540-572.jpg' alt='A book'>
+                                </div>
+                                <div class="card__conten">
+                                    <h2 class="product__price"> $19.99 </h2>
+                                    <p class='product__description'><%= product.content %></p>
+                                </div>
+                            <div class="card__actions ">
+                                <button class="btn">Add to Card</button>
+                            </div>
+                        </header>
+                    </article>
+                <% } %> 
+            </div>
+        <% } else { %>
+            <h1>no products</h1>
+        <% } %>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+<%- include('includes/head.ejs')%>
+<link rel='stylesheet' href='/css/product.css' />
+<link rel='stylesheet' href='/css/data.css' />
+<script>
+    const myFunction = (far) => {
+      console.log("The form was submitted");
+      localStorage.setItem("mykey",far);
+    }
+    </script>
+</head>
+
+<body>
+    <%- include('includes/navigation.ejs')%>
+    <main>
+        <p><%= fib %></p>
+    </main>
+</body>
+
+</html>
