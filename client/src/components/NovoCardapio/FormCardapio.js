@@ -1,5 +1,5 @@
 import { useState} from 'react';
-import { fetchCardapio, getCardapio } from '../../scripts/fetch-cardapio';
+import { fetchCardapio, getTestCardapio } from '../../scripts/fetch-cardapio';
 import './FormCardapio.css'
 const FormCardapio = () => {
 
@@ -32,8 +32,8 @@ const FormCardapio = () => {
         let tentativa = 2
         while (tentativa > 0) {
             try {
-                // Caso seja algo?
-                if (await getCardapio(cardapioData, url4) === true) {
+                // Caso seja teste
+                if (await getTestCardapio(cardapioData, url4) === true) {
                     console.log("Localhost")
                     mudarEstado("Enviado")
                     break

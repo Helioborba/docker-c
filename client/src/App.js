@@ -3,19 +3,30 @@ import Card from './components/UI/Card'
 import NovosCardapio from './components/NovoCardapio/NovosCardapio';
 const App = () => {
   // valor do props (apenas um dummy)
-  const cardapio = [
-    { titulo : 'Carcaça' },
-    { titulo : 'Peito de Frago'},
-    { titulo : 'Costela de Porco'},
-    { titulo : 'Bisteca de Porco'},
-    { titulo : 'Picanha'},
-    { titulo : 'Castanha do Pará'},
-    { titulo : 'Castanha de Cajú'}
+  const indicesVistos = [ 
+    { indice : 1 },
+    { indice : 2 },
+    { indice : 3 },
+    { indice : 4 },
+    { indice : 5 },
+    { indice : 6 },
+    { indice : 7 },
+    { indice : 8 }
+  ]
+  const valores = [
+    { valor : 1 },
+    { valor : 2 },
+    { valor : 3 },
+    { valor : 4 },
+    { valor : 5 },
+    { valor : 6 },
+    { valor : 7 }
   ];
+  
   return (
       <Card className='Cardapio'>
         <NovosCardapio/>
-        <Cardapio dados={cardapio}/>
+        <Cardapio indices={indicesVistos} valores={valores}/>
       </Card> 
   );
 }

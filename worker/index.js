@@ -8,7 +8,7 @@ const redisClient = redis.createClient({ // Iniciar o redis
 })
 const sub = redisClient.duplicate();
 
-function calcFib(indice) { // Calculo recursivo do fibonacci; este é o metodo para gastar memória (APENAS PARA TESTE COM O REDIS)
+function calcFib(indice) { // Cálculo recursivo do fibonacci; este é o método para gastar memória (APENAS PARA TESTE COM O REDIS)
    if (indice < 2) return 1;
    return calcFib(indice - 1) + calcFib(indice - 2); 
 }

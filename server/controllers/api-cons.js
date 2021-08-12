@@ -31,7 +31,7 @@ export function postRedisAndPg(req, res, next) { // Precisa de um nome melhor...
     if (isNaN(parseInt(indice))  || indice === null) {
         res.send({ error: 'Não foi inserido número!'})
     } else {
-        redisClient.hSet('values', indice, "Ainda não há nada");
+        redisClient.hSet('values', indice, "Nothing here yet");
         redisClient.publish('insert',indice); // Execultado o trabalho de checagem do Fib
         
         // Pg para inserir o resultado
@@ -46,7 +46,6 @@ export function postRedisAndPg(req, res, next) { // Precisa de um nome melhor...
         })
         res.send({ working: true}); // esta sendo execultado a task
     }
-    
 }
 
 export function getPg(req, res, next) { // Pega todos os valores na linha

@@ -7,12 +7,13 @@ export default class Fib{
 
     save() {
         try{
+            db.query("CREATE TABLE IF NOT EXISTS values (number INT)")
             return db.query(
-                'INSERT INTO results(numbers) VALUES (?)', [this.indice]
+                'INSERT INTO values (indice) VALUES (?)', [this.indice]
             )
         }
         catch(err) {
-            console.log("erro no insert da query",err)
+            console.log("erro no insert da query", err)
         }
     }
 
