@@ -3,7 +3,8 @@ import Card from './components/UI/Card'
 import NovosCardapio from './components/NovoCardapio/NovosCardapio';
 const App = () => {
   // valor do props (apenas um dummy)
-  const indicesVistos = [ 
+  // Colocar aqui as funções
+  const indices = [ 
     { indice : 1 },
     { indice : 2 },
     { indice : 3 },
@@ -26,7 +27,7 @@ const App = () => {
   return (
       <Card className='Cardapio'>
         <NovosCardapio/>
-        <Cardapio indices={indicesVistos} valores={valores}/>
+        <Cardapio indices={indices} valores={valores}/>
       </Card> 
   );
 }

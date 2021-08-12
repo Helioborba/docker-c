@@ -2,8 +2,6 @@ import ItemCardapio from './ItemCardapio';
 import './Cardapio.css'
 
 const Cardapio = (props) => {
-    
-    
     // Criar para cada item um componente
     const items = []
     for (let i = 0; i < props.indices.length; i++) {

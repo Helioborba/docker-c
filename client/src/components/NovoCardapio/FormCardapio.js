@@ -1,6 +1,6 @@
 import { useState} from 'react';
-import { fetchCardapio, getTestCardapio } from '../../scripts/fetch-cardapio';
-import './FormCardapio.css'
+import { fetchPostCardapio, fetchPostIndice } from '../../scripts/fetch-cardapio';
+import './FormCardapio.css';
 const FormCardapio = () => {
 
     // vai pegando o texto ativamente; vai setar os dados que enviar APENAS quando for clicado o submit
@@ -20,10 +20,11 @@ const FormCardapio = () => {
     const [buttonText, mudarEstado] = useState('Adicionar alimento');
 
     const  EnviarHandler = async (event) => {
-        const url1 = "http://server:9000/view-raw/post"
-        const url3 = "http://127.0.0.1:5000/request"
-        const url2 = "http://localhost:8000/view-raw/post"
-        const url4 = "http://localhost:8000/values"
+        const url1 = "http://server:9000/view-raw/post";
+        const url3 = "http://127.0.0.1:5000/request";
+        const url2 = "http://localhost:8000/view-raw/post";
+        const url4 = "http://localhost:8000/values"; // Posta de dados
+
         event.preventDefault();
         const cardapioData = {
             alimento : alimentoColocado, // alimentoColocado
@@ -32,35 +33,35 @@ const FormCardapio = () => {
         let tentativa = 2
         while (tentativa > 0) {
             try {
-                // Caso seja teste
-                if (await getTestCardapio(cardapioData, url4) === true) {
-                    console.log("Localhost")
-                    mudarEstado("Enviado")
+                // Post Correto
+                if (await fetchPostIndice(cardapioData, url4) === true) {
+                    console.log("Localhost");
+                    mudarEstado("Enviado");
                     break
                 }
 
                 // Caso seja container
-                if (await fetchCardapio(cardapioData, url1) === true) {
-                    console.log("Container")
-                    mudarEstado("Enviado") // QUANDO FUNCIONAR O POST, AI SIM VAI APARECER O ENVIADO!
+                if (await fetchPostCardapio(cardapioData, url1) === true) {
+                    console.log("Container");
+                    mudarEstado("Enviado"); // QUANDO FUNCIONAR O POST, AI SIM VAI APARECER O ENVIADO!
                     break
                 }
                 // Caso seja localhost
-                if (await fetchCardapio(cardapioData, url2) === true) {
-                    console.log("Localhost")
-                    mudarEstado("Enviado")
+                if (await fetchPostCardapio(cardapioData, url2) === true) {
+                    console.log("Localhost");
+                    mudarEstado("Enviado");
                     break
                 }
-                if (await fetchCardapio(cardapioData, url3) === true) {
-                    console.log("Localhost")
-                    mudarEstado("Enviado")
+                if (await fetchPostCardapio(cardapioData, url3) === true) {
+                    console.log("Localhost");
+                    mudarEstado("Enviado");
                     break
                 }
                 // enviar?
             } catch (err) {
-                console.log("erro uaio : "+err)
-                tentativa -= 1
-                await new Promise(res => setTimeout(res, 20000)) 
+                console.log(err);
+                tentativa -= 1;
+                await new Promise(res => setTimeout(res, 20000)); 
             } 
             tentativa -= 1
         }
