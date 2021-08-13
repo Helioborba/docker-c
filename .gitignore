@@ -1,4 +1,4 @@
 node_modules
 .eslintcache
 docker-compose.yml
-client/.eslintcache
+./client/.eslintcache
