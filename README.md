@@ -1,1 +1,1 @@
-# Container para APP (loja) com Docker.# docker-c
+# Container para APP (loja) com Docker.

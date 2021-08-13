@@ -1,13 +1,12 @@
 .item-cardapio {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: left;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     padding: 0.5rem;
-    margin: 1rem 0.5rem;
+    margin: 0.7rem 0.5rem;
     border-radius: 12px;
-    width: calc(95% * (1/4) - 10px - 1px);
-    height: 70px;
+    height: 50px;
     background-color: rgb(88, 88, 88);
     flex-shrink: inherit;
 }
@@ -17,8 +16,6 @@ display: flex;
 flex-direction: row;
 gap: 1rem;
 align-items: flex-start;
-flex-flow: row;
-justify-content: center;
 flex: 1;
 }
 
@@ -31,8 +28,8 @@ color: white;
 
 @media (min-width: 580px) {
     .item-cardapio__descricao {
-    align-items: flex-start;
-    justify-content: center;
+    align-items: center;
+    justify-content: left;
     flex: 1;
     }
 
