@@ -20,10 +20,9 @@ const FormCardapio = () => {
     const [buttonText, mudarEstado] = useState('Adicionar alimento');
 
     const  EnviarHandler = async (event) => {
-        const url1 = "http://server:9000/view-raw/post";
-        const url3 = "http://127.0.0.1:5000/request";
-        const url2 = "http://localhost:8000/view-raw/post";
-        const url4 = "http://localhost:8000/values"; // Posta de dados
+        const url1 = "api/view-raw/post";
+        const url3 = "api/request";
+        const url4 = "api/values"; // Posta de dados
 
         event.preventDefault();
         const cardapioData = {
@@ -33,27 +32,29 @@ const FormCardapio = () => {
         let tentativa = 2
         while (tentativa > 0) {
             try {
-                // Post Correto
+
+                // Basicamente, está parte foi totalmente modificada por utilizar o Nginx 
+                // com a mesma função do Elastic load balancing de fazer o tráfego automático.
+                // então não é necessário providenciar o localhost etc 
+
+
+                // Post Correto, utilizado para o projeto do Fib
                 if (await fetchPostIndice(cardapioData, url4) === true) {
-                    console.log("Localhost");
                     mudarEstado("Enviado");
                     break
                 }
 
-                // Caso seja container
+                // Esse é o original para outra coisa, deixar em off por enquanto
                 if (await fetchPostCardapio(cardapioData, url1) === true) {
-                    console.log("Container");
-                    mudarEstado("Enviado"); // QUANDO FUNCIONAR O POST, AI SIM VAI APARECER O ENVIADO!
+                    mudarEstado("Enviado"); // QUANDO FUNCIONAR O POST, AI SIM VAI APARECER O ENVIADO! isso é mais para testes usando a libray de teste 
                     break
                 }
-                // Caso seja localhost
-                if (await fetchPostCardapio(cardapioData, url2) === true) {
-                    console.log("Localhost");
-                    mudarEstado("Enviado");
-                    break
-                }
+
+                //                                                                          //
+                // é possível simplificar isso aqui, se passar como array a url no acima /\ //
+                //                                                                          //
+
                 if (await fetchPostCardapio(cardapioData, url3) === true) {
-                    console.log("Localhost");
                     mudarEstado("Enviado");
                     break
                 }

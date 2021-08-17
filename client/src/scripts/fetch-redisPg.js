@@ -1,8 +1,8 @@
 import { fetchGetIndice, fetchGetValor } from './fetch-cardapio';
 
 // Todas as endpoints em arrays para facilitar a vizualização
-const urlGetIndice = []
-const urlGetValor = ["http://localhost:8000/values/all",];
+const urlGetIndice = ["/api/values/all"]
+const urlGetValor = ["/api/values/current"];
 
 // Indice
 /**
@@ -16,8 +16,7 @@ export async function getIndice() {
             // Post Correto
             for (let url of urlGetIndice) {
                 if (await fetchGetIndice(url,true) === true) {
-                    console.log("Localhost");
-                    mudarEstado("Enviado");
+                    console.log("Indices recebidos do Postgres");
                     return fetchGetIndice(url,false)
                 }
             }
@@ -41,10 +40,9 @@ export async function getValor() {
         try {
             // Post Correto
             for (let url of urlGetValor) {
-                if (await fetchGetIndice(url,true) === true) {
-                    console.log("Localhost");
-                    mudarEstado("Enviado");
-                    return fetchGetIndice(url,false);
+                if (await fetchGetValor(url,true) === true) {
+                    console.log("Valores recebidos do Redis");
+                    return fetchGetValor(url,false);
                 }
             }
         } catch (err) {

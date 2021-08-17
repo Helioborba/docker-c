@@ -68,7 +68,7 @@ export async function fetchPostIndice(data, url) {
     // Provavelmente vai ter um erro aqui quando lançar uma URL errada
     try {
         const res = await fetch(url, {
-                method: 'POST',
+                method: 'GET',
                 headers: {
                     "Content-Type": "application/json",
                     "host": "http://localhost:9000/"
@@ -101,7 +101,7 @@ export async function fetchGetValor(url,check) {
     // Provavelmente vai ter um erro aqui quando lançar uma URL errada
     try {
         const res = await fetch(url, {
-                method: 'POST',
+                method: 'GET',
                 headers: {
                     "Content-Type": "application/json",
                     "host": "http://localhost:9000/"

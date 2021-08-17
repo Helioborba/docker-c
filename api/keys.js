@@ -13,5 +13,8 @@ export const pgDatabase = process.env.PG_DATABASE;
 export const pgPassword = process.env.PG_PASSWORD;
 
 // REDIS keys
-export const redisHost = process.env.REDIS_HOST
-export const redisPort = process.env.REDIS_PORT
+export const redisHost = process.env.REDIS_HOST;
+export const redisPort = process.env.REDIS_PORT;
+
+// export const redisHost = process.env.REDIS_HOST;
+// export const redisPort = process.env.REDIS_PORT;

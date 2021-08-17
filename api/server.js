@@ -7,7 +7,7 @@ import path from 'path';
 import { routes as routesViewRaw } from './routes/view-raw.js';
 import admin from './routes/admin.js';
 import shop from './routes/shop.js';
-import apiCons from './routes/api-cons.js' // Também conhecido como endpoints
+import apiCons from './routes/api-cons.js'; // Também conhecido como endpoints
 import testPage from './routes/test-page.js';
 
 // const rawData = require('./routes/view-raw-data') // DESCONTINUADO
@@ -30,9 +30,9 @@ app.set('views', './views');
 
 // CORS for HTTP requests
 app.use( cors({
-    Origin: ['http://localhost:9000', 'http://client:3000'], // O primeiro é para local, o outro container
-    credentials: true,
-  })); // Origin:'http://localhost:3000' padrão para o react app, porém a API NÃO utiliza o 3000, é uma péssima ideia trocar.
+    Origin: ['http://localhost:9000/','http://nginx:9000/'], // O primeiro é para o nginx e o outro serve para a network do docker-compose
+    credentials: true
+  }));
 
 // Pages
 app.use('/admin', admin);
@@ -40,12 +40,11 @@ app.use('/admin', admin);
 app.use(routesViewRaw);
 app.use(testPage);
 app.use(shop);
-app.use('/values', apiCons)
+app.use('/values', apiCons);
 app.use(page404);
 
-
-// Server Connections
-const port = process.env.PORT || 9000;
+// Conexão básica do servidor
+const port = 9000;
 app.listen(port, () => {
     console.log("Port connected");
 });
