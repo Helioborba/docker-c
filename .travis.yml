@@ -13,6 +13,8 @@ script:
   # yes
 deploy:
   provider: heroku
+  on:
+    branch: heroku-build
   api_key:
     secure: $HEROKU_SECRET_KEY
   app: dockerc
