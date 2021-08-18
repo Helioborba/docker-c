@@ -7,7 +7,7 @@ import Card from './components/UI/Card'
 function App() {
   return (
     <Router>
-      <Card className='Cardapio'>
+      <Card>
         <div className="App">
           <div className="App-main">
             <div>

@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './Form.css'
+
 class Fib extends Component {
   state = {
     seenIndexes: [],
     values: {},
     index: '',
+    estado: 'Enviar',
+    class: 'Form__actions_active'
   };
 
+  // DEPRACATEDDDDDDDDD
   componentDidMount() {
-    this.fetchIndexes();
+    this.fetchIndexes(); 
   }
-
+  // DEPRACATEDDDDDDDDD
   
 
   async fetchIndexes() {
@@ -23,14 +27,26 @@ class Fib extends Component {
   }
 
   handleSubmit = async (event) => {
-    event.preventDefault();
-
+    event.preventDefault(); 
+    
     await axios.post('/api/values', {
       indice: this.state.index,
     }).then((res)=>{
-      console.log("todos: ",res.data)
-    });
-    
+      console.log("todos: ",res.data);
+      this.state.estado = "Enviado";
+      this.state.class = "Form__actions_inactive";
+    }).catch( (err) => {
+      console.log(err)
+    })
+
+    // bloquear de enviar depois de um envio
+    const button = document.querySelector('button');
+    button.disabled = true;
+
+    // Essa parte é para checar se funcionou o post //
+    // this.state.estado = "Enviado";
+    //                  //////                      //
+
     this.setState({ index: '' });
   };
 
@@ -56,18 +72,19 @@ class Fib extends Component {
     return (
       <div className="Form">
         <form onSubmit={this.handleSubmit}>
-            <div className='novos-cardapio__controls'>
-                <div className='novos-cardapio__control'>
-                    <label>Enter your index:</label>
+            <div className='Form__controls'>
+                <div className='Form__control'>
+                    <label>Digite o índice:</label>
                     <input value={this.state.index} onChange={(event) => this.setState({ index: event.target.value })}/>
                 </div>
             </div>
-            <div className='novos-cardapio__actions'>
-            <button>Submit</button>
+            <div className={this.state.class}>
+              <button>{this.state.estado}</button>
             </div>
+            {/* onClick={(event) => this.setState({ estado: event.target.value })} */}
         </form>
         <div>
-            <h3>Indexes I have seen:</h3>
+            <h3>Todos os indices digitados:</h3>
             {this.renderSeenIndexes()}
         </div>
       </div>
