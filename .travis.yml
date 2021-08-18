@@ -10,6 +10,7 @@ script:
   - docker-compose run -e CI=true client npm run test
   # docker run -e CI=true borba/app npm run test # test
   # test?
+  # yes
 deploy:
   provider: heroku
   api_key:
