@@ -1,0 +1,51 @@
+version: "3"
+services:
+    # Virou Api por causa do nginx, ele tem uma keyword 'server' já implantada e poderia ocorrer incompatibilidade
+    api:
+        stdin_open: true
+        environment:
+            # mySql
+            - MYSQL_HOST=mysqlHost
+            - MYSQL_USER=mysqlUser
+            - MYSQL_PORT=mysqlPort
+            - MYSQL_DATABASE=mysqlDatabase
+            - MYSQL_PASSWORD=mysqlPassword
+            # postgres
+            - PG_HOST=postgres
+            - PG_USER=postgres
+            - PG_PORT=5432
+            - PG_DATABASE=postgres
+            - PG_PASSWORD=postgres_password
+        build:
+            context: "./api"
+            dockerfile: Dockerfile
+        restart: on-failure
+        volumes:
+            - /api/node_modules
+            - ./api:/api
+    client:
+        stdin_open: true
+        build:
+            context: "./client"
+            dockerfile: Dockerfile.dev
+        restart: on-failure
+        volumes:
+            - /client/node_modules
+            - ./client:/client
+        depends_on:
+            - api
+    postgres:
+        image: 'postgres:alpine3.14'
+        environment:
+            - POSTGRES_PASSWORD=postgres_password
+    nginx:
+        restart: always
+        build: 
+            context: ./nginx
+            dockerfile: Dockerfile.dev
+        ports: 
+            - "8000:80"
+        depends_on:
+            - api
+            - client
+            

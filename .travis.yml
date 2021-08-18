@@ -7,9 +7,7 @@ before_install:
   - docker-compose build
 script:
   # - docker-compose run -d server npm run start
-  - docker-compose up
-  - docker-compose exec -e CI=true client npm run test
-  #- docker-compose run -e CI=true client npm run test
+  - docker-compose run -e CI=true client npm run test
   # docker run -e CI=true borba/app npm run test # test
   # test?
 deploy:
