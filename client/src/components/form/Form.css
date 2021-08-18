@@ -1,3 +1,11 @@
+.Form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 30px;
+    background-color: rgb(18, 8, 38);
+    padding-bottom: 30px;
+}
 .novos-cardapio__controls {
     display: flex;
     flex-wrap: wrap;

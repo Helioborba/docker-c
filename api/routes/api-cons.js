@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getPg, getRedis, postRedisAndPg } from '../controllers/api-cons.js';
+import { getPg, getRedis, postPg } from '../controllers/api-cons.js';
 
 
 const router = Router();
@@ -9,6 +9,6 @@ router.get("/all", getPg);
 
 // Valor que está guardado no momento
 router.get("/current", getRedis)
-router.post('/', postRedisAndPg);
+router.post('/', postPg);
 
 export default router;

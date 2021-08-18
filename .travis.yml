@@ -11,14 +11,8 @@ script:
   - docker run -e CI=true borba/app npm run test # test
   # test?
 deploy:
-  provider: elasticbeanstalk
-  region: "us-east-1"
-  app: "docker"
-  env: "Docker-env-1"
-  bucket_name: "elasticbeanstalk-us-east-1-182321959582"
-  bucket_path: "docker"
-  on:
-    branch: main
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
+  provider: heroku
+  api_key:
+    secure: $HEROKU_SECRET_KEY
+  app: dockerc
 
