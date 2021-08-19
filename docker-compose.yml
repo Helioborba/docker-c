@@ -44,6 +44,7 @@ services:
             - ./client:/client
         depends_on:
             - api
+        command: npm run test
     postgres:
         image: 'postgres:alpine3.14'
         environment:
