@@ -7,9 +7,6 @@ build:
     web: ./client/Dockerfile
     worker: ./api/Dockerfile
     # nginx: ./nginx/Dockerfile.dev
-  config:
-    port: 80
-    FOO: bar
 
   # worker: npm run start
 #k
