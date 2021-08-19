@@ -4,6 +4,8 @@ services:
 before_install:
 - docker-compose build
 script:
+- docker-compose run --entrypoint="python manage.py test" web
+script:
 - docker-compose run -e CI=true client npm run test
 deploy:
   provider: heroku
