@@ -4,13 +4,13 @@ setup:
       as: postgres
 build:
   docker:
-    client: ./client/Dockerfile.dev
-    api: ./api/Dockerfile
-    nginx: ./nginx/Dockerfile.dev
+    web: ./client/Dockerfile
+    # worker: ./api/Dockerfile
+    # nginx: ./nginx/Dockerfile.dev
   config:
     RAILS_ENV: development
     FOO: bar
 run:
-  client: npm run start
-  api: npm run start
+  web: npm run start
+  worker: npm run start
 #
