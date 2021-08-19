@@ -23,6 +23,16 @@ services:
         volumes:
             - /api/node_modules
             - ./api:/api
+    nginx:
+        restart: always
+        build: 
+            context: ./nginx
+            dockerfile: Dockerfile
+        ports: 
+            - "8000:80"
+        depends_on:
+            - api
+            - client
     client:
         stdin_open: true
         build:
@@ -38,14 +48,4 @@ services:
         image: 'postgres:alpine3.14'
         environment:
             - POSTGRES_PASSWORD=postgres_password
-    nginx:
-        restart: always
-        build: 
-            context: ./nginx
-            dockerfile: Dockerfile
-        ports: 
-            - "8000:80"
-        depends_on:
-            - api
-            - client
             
