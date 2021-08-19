@@ -12,5 +12,5 @@ build:
     FOO: bar
 run:
   web: npm run start
-  worker: npm run start
+  # worker: npm run start
 #
