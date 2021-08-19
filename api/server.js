@@ -44,7 +44,7 @@ app.use('/values', apiCons);
 app.use(page404);
 
 // Conexão básica do servidor
-const port = 9000;
+const port = process.env.PORT || 9000;
 app.listen(port, () => {
     console.log("Port connected");
 });
