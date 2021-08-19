@@ -5,10 +5,10 @@ setup:
 build:
   docker:
     web: ./client/Dockerfile
-    # worker: ./api/Dockerfile
+    worker: ./api/Dockerfile
     # nginx: ./nginx/Dockerfile.dev
   config:
-    RAILS_ENV: development
+    port: $PORT
     FOO: bar
 
   # worker: npm run start
