@@ -27,7 +27,7 @@ services:
         stdin_open: true
         build:
             context: "./client"
-            dockerfile: Dockerfile.dev
+            dockerfile: Dockerfile
         restart: on-failure
         volumes:
             - /client/node_modules
@@ -42,7 +42,7 @@ services:
         restart: always
         build: 
             context: ./nginx
-            dockerfile: Dockerfile.dev
+            dockerfile: Dockerfile
         ports: 
             - "8000:80"
         depends_on:
