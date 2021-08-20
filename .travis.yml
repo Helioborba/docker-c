@@ -8,7 +8,7 @@ services:
 before_install:
   - wget -qO- https://toolbelt.heroku.com/install.sh | sh
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
+  - echo "$HEROKU_SECRET_KEY" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
 
 script:
   - docker build -t $DOCKER_USERNAME/docker_client ./frontend_heroku;
@@ -33,3 +33,6 @@ deploy:
     heroku container:release web --app $HEROKU_NGINX;
   on: 
     branch: heroku-deploy
+  api_key:
+    secure: $HEROKU_SECRET_KEY
+  app: dockerc
