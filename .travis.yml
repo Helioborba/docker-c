@@ -12,11 +12,11 @@ before_install:
   - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
 
 script:
-  - docker build -t $DOCKER_USERNAME/docker_client ./frontend_heroku;
+  - docker build -t $DOCKER_USERNAME/docker_client ./client;
   - docker tag $DOCKER_USERNAME/docker_client registry.heroku.com/$HEROKU_CLIENT/web;
-  - docker build -t $DOCKER_USERNAME/docker_api ./api_heroku;
+  - docker build -t $DOCKER_USERNAME/docker_api ./api;
   - docker tag $DOCKER_USERNAME/docker_api registry.heroku.com/$HEROKU_API/web;
-  - docker build -t $DOCKER_USERNAME/docker_nginx ./nginx_heroku;
+  - docker build -t $DOCKER_USERNAME/docker_nginx ./nginx;
   - docker tag $DOCKER_USERNAME/docker_nginx registry.heroku.com/$HEROKU_NGINX/web;
 
 deploy:
