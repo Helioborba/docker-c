@@ -9,7 +9,7 @@ services:
 before_install:
   - wget -qO- https://toolbelt.heroku.com/install.sh | sh
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - echo "A3xwBfe/LAvdzY22QBpMKB7rv8RQ7nD8EGyI+dnaal+c4u8iHiZlLt2LqC0qJ5bQjanub55VuKOGeVisydEYpqhAV3bqkHPVUt0vB9g9bbruVPvZfrMH9nDUl3cnbLrjbfqoLmRJSvZvw5nfajE304lZZ242Ht1liQ6qjv0Pc7TdFYKjaG4ggXIwXGYSGa8PJslVhCFyQNaq9XXll07SjbvQxWw0azqmyoFsSCg9TKtLtJbI2Up+4jtVxQ2Zg9eHVopV51dhsXsXPN7a3IcrjFmxJcQAptr9NUTtJNfUiK8j0FyXgvQS8u4mWhLkma7dR9xbIiNd3rwI/Z5BrF2KMZptUZvWx8/IoxoobI9CKUzb3lzhF3MzXnsVG2qEAU0ItTpbKiZE8QuM0LLhJuj3cFBIpxJ4O7ZfNKTtEOq5vJ9iGbNFneJqmrIoxIPV3ZHVDHJQNfrInEBkEsJirmmflg5YwL+ylb8cq4VvMmpLqiUgKU/GBzCxKKsPdyPPJYP8UXhTNXQ9mC+3TXKs/bxz5UYAZIFkEnfNxFgE6C0nEL4R2HqrW/E7J1RAUEYbEjEBIYyJZOuTJepj/jT/77uDvp0dHDWdKGYKaA4gK3l0I0q/+gPBML2Z5Gtcx/XNQ3iY3C5qbi5Zy5UXEYyKM0HA+xYOsE2MgUeFIoozF0yd0Kw=" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
+  - echo "f393f4b3-d762-4f20-b704-8aaf7558073e" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
 
 script:
   - docker build -t $DOCKER_USERNAME/docker_client ./frontend_heroku;
