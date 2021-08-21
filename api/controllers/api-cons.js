@@ -1,8 +1,8 @@
 import Fib from '../models/pg-fib.js'
-const numberscal = [0];
+const numberscal = [""];
 
 function calc(num) {
-    return num + 100
+    return num * num
 }
 export async function getRedis(req, res, next) { // pegar todos
 

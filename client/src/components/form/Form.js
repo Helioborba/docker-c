@@ -78,7 +78,7 @@ class Fib extends Component {
         <form onSubmit={this.handleSubmit}>
             <div className='Form__controls'>
                 <div className='Form__control'>
-                    <label>Digite o índice:</label>
+                    <label>Insira o número:</label>
                     <input value={this.state.index} onChange={(event) => this.setState({ index: event.target.value })}/>
                 </div>
             </div>
@@ -88,7 +88,7 @@ class Fib extends Component {
             {/* onClick={(event) => this.setState({ estado: event.target.value })} */}
         </form>
         <div>
-            <h3>Todos os indices digitados:</h3>
+            <h3>O valor ao quadrado resulta em:</h3>
             {this.renderSeenIndexes()}
         </div>
       </div>
