@@ -29,10 +29,7 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 
 // CORS for HTTP requests
-app.use( cors({
-    Origin: ['http://localhost:9000/','http://nginx:9000/'], // O primeiro é para o nginx e o outro serve para a network do docker-compose
-    credentials: true
-  }));
+app.use(cors());
 
 // Pages
 app.use('/admin', admin);

@@ -27,16 +27,17 @@ export async function postPg(req, res, next) { // Precisa de um nome melhor...
 }
 
 export async function getPg(req, res, next) { // Pega todos os valores na linha
-    try {
-        Fib
-        .allValues()
-        .then( (data) => {
-            res.send(data.rows);
-        })
-        .catch((err) => {
-            console.log("Não existe dados ainda",err)
-        })
-    } catch (err) {
-        console.log("Não existe nada na tabela para pegar",err)
-    }
+    res.send("")
+    // try {
+    //     Fib
+    //     .allValues()
+    //     .then( (data) => {
+    //         res.send(data.rows);
+    //     })
+    //     .catch((err) => {
+    //         console.log("Não existe dados ainda",err)
+    //     })
+    // } catch (err) {
+    //     console.log("Não existe nada na tabela para pegar",err)
+    // }
 }
