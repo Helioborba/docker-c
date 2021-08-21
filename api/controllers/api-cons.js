@@ -16,12 +16,12 @@ export async function postPg(req, res, next) { // Precisa de um nome melhor...
         res.send({ error: 'Não foi inserido número!'})
     } else {
         // Pg para inserir o resultado
-        const fib = new Fib(indice);
-        fib
-        .save()
-        .catch( (err) => {
-            console.log(err);
-        })
+        // const fib = new Fib(indice);
+        // fib
+        // .save()
+        // .catch( (err) => {
+        //     console.log(err);
+        // })
         res.send({ working: true}); // esta sendo execultado a task
     }
 }
