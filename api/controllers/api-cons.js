@@ -1,5 +1,9 @@
 import Fib from '../models/pg-fib.js'
-  
+const numberscal = [0];
+
+function calc(num) {
+    return num + 100
+}
 export async function getRedis(req, res, next) { // pegar todos
 
 }
@@ -22,12 +26,14 @@ export async function postPg(req, res, next) { // Precisa de um nome melhor...
         // .catch( (err) => {
         //     console.log(err);
         // })
+        numberscal.push(indice)
         res.send({ working: true}); // esta sendo execultado a task
     }
+
 }
 
 export async function getPg(req, res, next) { // Pega todos os valores na linha
-    res.send("")
+    res.send(calc(numberscal.slice(-1)))
     // try {
     //     Fib
     //     .allValues()
