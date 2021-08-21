@@ -33,7 +33,8 @@ export async function postPg(req, res, next) { // Precisa de um nome melhor...
 }
 
 export async function getPg(req, res, next) { // Pega todos os valores na linha
-    res.send(calc(numberscal.slice(-1)))
+    res.send({indice:calc(numberscal.slice(-1))})
+    // Precisa conectar com uma DB, preferencia mysql
     // try {
     //     Fib
     //     .allValues()
