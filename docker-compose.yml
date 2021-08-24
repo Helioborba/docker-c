@@ -1,11 +1,20 @@
 version: "3"
 services:
+    api:
+        stdin_open: true
+        build: 
+            context: "./api"
+            dockerfile: Dockerfile.dev
+        restart: on-failure
+        volumes: 
+            - /api/node_modules
+            - ./api:/api
     # Virou Api por causa do nginx, ele tem uma keyword 'server' já implantada e poderia ocorrer incompatibilidade
     client:
         stdin_open: true
         build:
             context: "./client"
-            dockerfile: Dockerfile
+            dockerfile: Dockerfile.dev
         restart: on-failure
         volumes:
             - /client/node_modules
@@ -16,10 +25,8 @@ services:
         restart: always
         build: 
             context: ./nginx
-            dockerfile: Dockerfile
+            dockerfile: Dockerfile.dev
         ports: 
             - "8000:80"
-        environment:
-            - PORT:80
             
     

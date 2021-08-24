@@ -1,7 +1,7 @@
 .App {
   display: flex;
   text-align: center;
-
+  background-color: #515255;
 }
 
 .App-main {
