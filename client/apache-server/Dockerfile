@@ -1,6 +1,6 @@
 FROM php:7.4-apache
 
-WORKDIR '/client'
+
 RUN apt-get update
 RUN apt-get install gettext-base
 # COPY ./deb-packs/php7-common.deb ./
