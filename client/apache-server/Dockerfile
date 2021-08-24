@@ -1,4 +1,4 @@
-FROM php:7.4-apache
+FROM phpearth/php:7.4-apache
 
 WORKDIR '/client'
 # RUN apt-get update
