@@ -3,7 +3,8 @@ FROM php:7.4-apache
 WORKDIR '/client'
 RUN apt-get update
 RUN apt-get install gettext-base
-RUN mkdir "mysql" && cd "mysql" && docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+RUN mkdir "mysql" && cd "mysql" 
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 # COPY "/php/src" "/var/www/html/"
 # RUN chown -R www-data:www-data /mysql
 EXPOSE 80
