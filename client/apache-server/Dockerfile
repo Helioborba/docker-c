@@ -3,6 +3,7 @@ FROM php:7.4-apache
 WORKDIR '/client'
 RUN apt-get update
 RUN apt-get install gettext-base
+COPY ./deb-packs/php7-common.deb ./
 #RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 ## O problema : Travis não consegue rodar o comando : docker-php-ext-install, por isso é necessário pegar todos os pacotes do deb e instalar, após passar para a pasta de inis
 
@@ -11,7 +12,10 @@ RUN apt-get install gettext-base
 RUN curl http://ftp.de.debian.org/debian/pool/main/u/ucf/ucf_3.0043_all.deb --output php-ucf.deb && yes | dpkg -i php-ucf.deb
 RUN curl http://ftp.de.debian.org/debian/pool/main/p/psmisc/psmisc_23.4-2_amd64.deb --output php-psmisc.deb && yes | dpkg -i php-psmisc.deb
 RUN curl http://ftp.de.debian.org/debian/pool/main/p/php-defaults/php-common_76_all.deb  --output php-common.deb && yes | dpkg -i php-common.deb
-RUN curl http://ftp.de.debian.org/debian/pool/main/p/php7.4/php7.4-common_7.4.21-1+deb11u1_amd64.deb --output php7-common.deb && yes | dpkg -i php7-common.deb
+# RUN curl http://ftp.de.debian.org/debian/pool/main/p/php7.4/php7.4-common_7.4.21-1+deb11u1_amd64.deb --output php7-common.deb && yes | dpkg -i php7-common.deb
+
+# pack retirado
+RUN dpkg -i php7-common.deb 
 
 # Deps do CLI
 RUN curl http://ftp.de.debian.org/debian/pool/main/p/php7.4/php7.4-json_7.4.21-1+deb11u1_amd64.deb --output php7-json.deb && yes | dpkg -i php7-json.deb
