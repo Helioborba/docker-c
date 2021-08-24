@@ -1,5 +1,4 @@
 FROM php:7.4-apache
-RUN adduser --system --group --no-create-home appuser
 
 WORKDIR '/client'
 RUN apt-get update
