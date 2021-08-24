@@ -19,8 +19,8 @@ services:
         volumes:
             - ./client/php/src:/var/www/html/
             - ./client/apache-server/php.ini:/usr/local/etc/php/conf.d/php.ini
-        # command: npm run start # trocar para test caso for para o Travis, comentar tudo SE FOR PRA UTILIZAR O NGINX
-            ### Importante lembrar ; nginx quando estiver em dev, test quando for build
+
+            
     nginx:
         restart: always
         build: 
