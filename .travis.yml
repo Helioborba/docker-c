@@ -1,31 +1,37 @@
 sudo: required
 services:
-- docker
+  - docker
 before_install:
-- wget -qO- https://toolbelt.heroku.com/install.sh | sh
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-- echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
+  - wget -qO- https://toolbelt.heroku.com/install.sh | sh
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
 script:
-- docker build -t $DOCKER_USERNAME/docker_client ./client;
-- docker tag $DOCKER_USERNAME/docker_client registry.heroku.com/$HEROKU_CLIENT/web;
-- docker build -t $DOCKER_USERNAME/docker_api ./api;
-- docker tag $DOCKER_USERNAME/docker_api registry.heroku.com/$HEROKU_API/web;
-- docker build -t $DOCKER_USERNAME/docker_nginx ./nginx;
-- docker tag $DOCKER_USERNAME/docker_nginx registry.heroku.com/$HEROKU_NGINX/web;
+    # Client (normal)
+  - docker build -t $DOCKER_USERNAME/docker_client ./client/apache-server;
+  - docker tag $DOCKER_USERNAME/docker_client registry.heroku.com/$HEROKU_CLIENT/web;
+    #
+  - docker build -t $DOCKER_USERNAME/docker_api ./api;
+  - docker tag $DOCKER_USERNAME/docker_api registry.heroku.com/$HEROKU_API/web;
+    #
+  - docker build -t $DOCKER_USERNAME/docker_nginx ./nginx;
+  - docker tag $DOCKER_USERNAME/docker_nginx registry.heroku.com/$HEROKU_NGINX/web;
 deploy:
   provider: script
   script: 
     docker push $DOCKER_USERNAME/docker_client; 
     docker push registry.heroku.com/$HEROKU_CLIENT/web;
     heroku container:release web --app $HEROKU_CLIENT; 
+
     docker push $DOCKER_USERNAME/docker_api;
     docker push registry.heroku.com/$HEROKU_API/web; 
     heroku container:release web --app $HEROKU_API; 
+
     docker push $DOCKER_USERNAME/docker_nginx; 
     docker push registry.heroku.com/$HEROKU_NGINX/web;
     heroku container:release web --app $HEROKU_NGINX;
   on:
     branch: heroku-deploy
+  
   # api_key:
   #   secure: RtE54M7F+GsFcpq+o15PuDJ9Kzif253hdGQpMVdTXKaoWdSFuIPX0hlpqNK7LZ/Ply59RvU0u1PLJZarXMhPVKlD/4NkblDfCiZAbq1P6SggTomaPyLPc8JjeiHzizVPbRkiP1m2M4ExZ7/HE3rWcGS2O1qNtYKuQy0DMvfdSAZD+vGW+Br68ugF8VX18MgeVbLVKWEC7S1lS5f2gA7CKQdnftvtZguY+xye0oR1dgX4XZ8KJwK9yfHKoVhz/iinto6XY/ucBp1ZwOG3oqPuzsZrk/1FeYdQmKPClnbYi3TWqhLDHNB6t0HXLGwZx+LmXDc5Vywwt2JH8OSlqcIp7kCgea5rhK2DKfnh7G7gy96GTaSgmmp19Af5Yk0ID1XsSPswr1pRp8XUyEGsJht4rk8rmP5YqRbJ7u+hB2MTgUzOpwqBrA4YLkLK/LWZjhT8K9njK5NXPWr4/Pmd7d/fzDKfdo5T3es4/Ef6SU5kzQaICtAr9u1cPGB1Yg6XpEPdpEPQq8OXwaekqD37+IVFTJa2wyXqJ8A2GsU3HerZT+j4mzeIwjX/geVcLqVznlREQzs8lkF42knAODHstpvQ+pQwMRxjRHcD3XiGmPZq9SXMkepLZwpy4vtCM4Ir5Oae1db7wIuWqCQr5S8jLA4aYR5+ypCb4agShO70Ln6oGRU=
   # app: docker-n

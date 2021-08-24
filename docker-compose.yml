@@ -13,12 +13,11 @@ services:
     client:
         stdin_open: true
         build:
-            context: "./client"
+            context: "./client/apache-server"
             dockerfile: Dockerfile.dev
         restart: on-failure
         volumes:
-            - /client/node_modules
-            - ./client:/client
+            - ./client/php/src:/var/www/html/
         # command: npm run start # trocar para test caso for para o Travis, comentar tudo SE FOR PRA UTILIZAR O NGINX
             ### Importante lembrar ; nginx quando estiver em dev, test quando for build
     nginx:
@@ -28,5 +27,6 @@ services:
             dockerfile: Dockerfile.dev
         ports: 
             - "8000:80"
-            
+        depends_on: 
+            - api
     
