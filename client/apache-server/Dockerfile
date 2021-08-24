@@ -1,6 +1,5 @@
 FROM php:7.4-apache
 
-WORKDIR '/client'
 RUN apt-get update
 RUN apt-get install gettext-base
 RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
