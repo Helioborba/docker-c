@@ -1,6 +1,6 @@
 FROM php:7.4-apache
 
-
+WORKDIR '/client'
 RUN apt-get update && yes | apt-get upgrade
 RUN apt-get install gettext-base
 # RUN yes | apt-get install wget
@@ -26,7 +26,8 @@ RUN curl http://ftp.de.debian.org/debian/pool/main/p/php-defaults/php-common_76_
 # RUN curl http://ftp.de.debian.org/debian/pool/main/p/php7.4/php7.4-common_7.4.21-1+deb11u1_amd64.deb --output php7-common.deb && yes | dpkg -i php7-common.deb
 
 #pack retirado
-RUN chmod +x | dpkg -i php7-common.deb
+RUN chmod +x -R /usr/share/
+RUN dpkg -i php7-common.deb
 
 #Deps do CLI
 RUN curl http://ftp.de.debian.org/debian/pool/main/p/php7.4/php7.4-json_7.4.21-1+deb11u1_amd64.deb --output php7-json.deb && yes | dpkg -i php7-json.deb
