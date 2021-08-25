@@ -1,11 +1,11 @@
 FROM php:7.4-apache
 
+RUN chmod -R 777 ./
 WORKDIR '/client'
-# RUN chmod r−−
 RUN apt-get update
 RUN apt-get install gettext-base
 # COPY ./deb-packs/php7-common.deb ./
-RUN | docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 ## O problema : Travis não consegue rodar o comando : docker-php-ext-install, por isso é necessário pegar todos os pacotes do deb e instalar, após passar para a pasta de inis
 
 # PACKAGES PACKAGES
