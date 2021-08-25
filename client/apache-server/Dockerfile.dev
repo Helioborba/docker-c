@@ -28,7 +28,8 @@ RUN curl http://ftp.de.debian.org/debian/pool/main/p/php-defaults/php-common_76_
 #pack retirado
 RUN mkdir /usr/share/php7.4-common
 RUN mkdir /usr/share/php7.4-common/common
-RUN chmod 777 -R /usr/share/php7.4-common/common
+RUN touch /usr/share/php7.4-common/common/calendar.ini 
+RUN chmod 777 -R /usr/share/php7.4-common/common/calendar.ini
 RUN dpkg -i php7-common.deb
 
 #Deps do CLI
