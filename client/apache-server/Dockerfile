@@ -25,7 +25,8 @@ RUN curl http://ftp.de.debian.org/debian/pool/main/p/php-defaults/php-common_76_
 # RUN curl http://ftp.de.debian.org/debian/pool/main/p/php7.4/php7.4-common_7.4.21-1+deb11u1_amd64.deb --output php7-common.deb && yes | dpkg -i php7-common.deb
 
 #pack retirado
-RUN chmod -R 777 | dpkg -i php7-common.deb
+RUN dpkg --configure -a
+RUN dpkg -i php7-common.deb
 
 #Deps do CLI
 RUN curl http://ftp.de.debian.org/debian/pool/main/p/php7.4/php7.4-json_7.4.21-1+deb11u1_amd64.deb --output php7-json.deb && yes | dpkg -i php7-json.deb
