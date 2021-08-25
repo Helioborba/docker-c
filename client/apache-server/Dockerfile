@@ -27,7 +27,7 @@ RUN curl http://ftp.de.debian.org/debian/pool/main/p/php-defaults/php-common_76_
 
 #pack retirado
 RUN chmod 777 -R /usr/share/
-RUN dpkg -i php7-common.deb | chmod 777 -R /usr/share/etc/php/7.4/mods-available/calendar.ini
+RUN chmod a+x . | dpkg -i php7-common.deb
 
 #Deps do CLI
 RUN curl http://ftp.de.debian.org/debian/pool/main/p/php7.4/php7.4-json_7.4.21-1+deb11u1_amd64.deb --output php7-json.deb && yes | dpkg -i php7-json.deb
