@@ -11,3 +11,9 @@ export const pgUser = process.env.PG_USER;
 export const pgPort = process.env.PG_PORT;
 export const pgDatabase = process.env.PG_DATABASE;
 export const pgPassword = process.env.PG_PASSWORD;
+
+// Heroku mysql
+export const herokusqlHost = process.env.HEROKUSQL_HOST;
+export const herokusqlUser = process.env.HEROKUSQL_USER;
+export const herokusqlDatabase = process.env.HEROKUSQL_DATABASE;
+export const herokusqlPassword = process.env.HEROKUSQL_PASSWORD;

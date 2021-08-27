@@ -1,4 +1,4 @@
-import Books from '../models/books.js';
+import Books from '../models/herokusql.js';
 
 export function getAddProduct(req, res, next) {
     res.render('add-product', {

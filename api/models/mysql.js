@@ -2,7 +2,7 @@ import db from '../connections/mysql-con.js';
 
 // feito na velocidade
 // retorna conexoes com o banco
-export default class Books {
+export default class Create {
     constructor(title, content) {
         this.title = title;
         this.content = content;

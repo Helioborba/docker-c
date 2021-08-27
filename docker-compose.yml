@@ -1,5 +1,6 @@
 version: "3"
 services:
+    # Virou Api por causa do nginx, ele tem uma keyword 'server' já implantada e poderia ocorrer incompatibilidade
     api:
         stdin_open: true
         build: 
@@ -9,7 +10,6 @@ services:
         volumes: 
             - /api/node_modules
             - ./api:/api
-    # Virou Api por causa do nginx, ele tem uma keyword 'server' já implantada e poderia ocorrer incompatibilidade
     client:
         stdin_open: true
         build:
@@ -19,8 +19,6 @@ services:
         volumes:
             - /client/node_modules
             - ./client:/client
-        # command: npm run start # trocar para test caso for para o Travis, comentar tudo SE FOR PRA UTILIZAR O NGINX
-            ### Importante lembrar ; nginx quando estiver em dev, test quando for build
     nginx:
         restart: always
         build: 

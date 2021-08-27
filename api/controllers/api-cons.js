@@ -1,39 +1,11 @@
-import Fib from '../models/pg-fib.js'
-const numberscal = [""];
-
-function calc(num) {
-    return num * num
-}
-export async function getRedis(req, res, next) { // pegar todos
-
+export async function  postMySQl(req, res, next) { // Precisa de um nome melhor...
+    const gp = req.body.indice
+    res.send({ message: 'good'})
+    console.log("request:", gp)
 }
 
-export async function postPg(req, res, next) { // Precisa de um nome melhor...
-    const indice = req.body.indice; // Caso não haja indice, retornar algo com 'internal error' pois não vai haver valor para ser resolvido. erro discreto
-    
-    // Redis
-    if (parseInt(indice) > 40) {
-        return res.status(422).send("O número é muito grande!"); // Bloquear de gastar... muito o redis
-    }
-    
-    if (isNaN(parseInt(indice))  || indice === null) {
-        res.send({ error: 'Não foi inserido número!'})
-    } else {
-        // Pg para inserir o resultado
-        // const fib = new Fib(indice);
-        // fib
-        // .save()
-        // .catch( (err) => {
-        //     console.log(err);
-        // })
-        numberscal.push(indice)
-        res.send({ working: true}); // esta sendo execultado a task
-    }
-
-}
-
-export async function getPg(req, res, next) { // Pega todos os valores na linha
-    res.send([{indice:calc(numberscal.slice(-1))}])
+export async function getMySQl(req, res, next) { // Pega todos os valores na linha
+    res.send([{indice: "ho"}])
     // Precisa conectar com uma DB, preferencia mysql
     // try {
     //     Fib
