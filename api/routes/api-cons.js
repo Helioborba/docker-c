@@ -1,14 +1,13 @@
 import { Router } from 'express';
-import { getPg, getRedis, postRedisAndPg } from '../controllers/api-cons.js';
+import { getMySql, postMySql } from '../controllers/api-cons.js';
 
 
 const router = Router();
 
 // Todos os valores guardados
-router.get("/all", getPg);
+router.get("/todos", getMySql); // GET
 
-// Valor que está guardado no momento
-router.get("/current", getRedis)
-router.post('/', postRedisAndPg);
+router.post('/inserir', postMySql); // POST
+
 
 export default router;

@@ -1,16 +1,17 @@
+import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
-import FormCardapio from './components/NovoCardapio/FormCardapio';
+import Form from './components/form/Form';
 
 test('renders learn react link', () => {
   render(<App />);
-  const linkElement = screen.getAllByText("Adicionar alimento");
+  const linkElement = screen.getAllByText("Enviar");
   expect(linkElement).toBeInTheDocument;
 });
-// Para rodar este teste, é fundamental que o servidor do Node esteja rodando para acontecer a chamada
+// Para rodar este teste, é fundamental que o servidor do Node esteja rodando para acontecer a chamada/ Aqui parece existir um bug com o jest
 // test('loads and displays greeting', async () => {
-//   render(<FormCardapio url="/" />)
-//   const button = screen.getByRole('button',{name:"Adicionar alimento"})
+//   render(<Form url="/" />)
+//   const button = screen.getByRole('button',{name:"Enviar"})
 
 //   fireEvent.click(button)
   
@@ -18,5 +19,4 @@ test('renders learn react link', () => {
   
 //   expect(dados).toBeInTheDocument
   
-
 // })
