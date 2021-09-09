@@ -5,7 +5,7 @@ import { postTest, getTest, getMySQl, postMySQl } from '../controllers/api-cons.
 const router = Router();
 
 // Rotas de teste
-router.get("/post_test", postTest);
+router.post("/post_test", postTest);
 router.get("/get_test", getTest);
 
 // Todos os valores guardados
