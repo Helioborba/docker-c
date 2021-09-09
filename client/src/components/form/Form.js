@@ -15,7 +15,7 @@ class Fib extends Component {
   componentDidMount() {
     this.fetchIndexes(); 
   }
-  // DEPRACATEDDDDDDDDD
+  // DEPRACATEDDDDDDDDDd
   
 
   async fetchIndexes() {
