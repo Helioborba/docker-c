@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getMySql, postMySql, postTest, getTest } from '../controllers/api-cons.js';
+import { postTest, getTest, getMySQl, postMySQl } from '../controllers/api-cons.js';
 
 
 const router = Router();
@@ -9,8 +9,8 @@ router.get("/post_test", postTest);
 router.get("/get_test", getTest);
 
 // Todos os valores guardados
-router.get("/todos", getMySql); // GET
-router.post('/inserir', postMySql); // POST
+router.get("/todos", getMySQl); // GET
+router.post('/inserir', postMySQl); // POST
 
 
 export default router;
