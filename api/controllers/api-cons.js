@@ -1,4 +1,15 @@
-export async function  postMySQl(req, res, next) { // Precisa de um nome melhor...
+export async function postTest(req, res, next) { // Precisa de um nome melhor...
+    const indice = req.body.indice
+    res.send({ message: 'funcinou'})
+}
+
+export async function getTest(req, res, next) { // Precisa de um nome melhor...
+    const indice = req.body.indice
+    res.send({ indice: '10'})
+}
+
+
+export async function postMySQl(req, res, next) { // Precisa de um nome melhor...
     const gp = req.body.indice
     res.send({ message: 'good'})
     console.log("request:", gp)

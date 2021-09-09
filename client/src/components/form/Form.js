@@ -19,7 +19,7 @@ class Fib extends Component {
   
 
   async fetchIndexes() {
-    const seenIndexes = await axios.get('/api/values/all');
+    const seenIndexes = await axios.get('/api/sistema/get_test');
     console.log(seenIndexes)
     this.setState({
       seenIndexes: seenIndexes.data
@@ -29,7 +29,7 @@ class Fib extends Component {
   handleSubmit = async (event) => {
     event.preventDefault(); 
     
-    await axios.post('/api/values', {
+    await axios.post('/api/sistema/post_test', {
       indice: this.state.index,
     }).then((res)=>{
       console.log("todos: ",res.data);
