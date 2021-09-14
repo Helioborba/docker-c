@@ -1,0 +1,33 @@
+version: "3"
+services:
+    # O composer serve apenas quando for rodar testes na api ou no server com o client
+    # Virou Api por causa do nginx, ele tem uma keyword 'server' já implantada e poderia ocorrer incompatibilidade
+    api:
+        stdin_open: true
+        build: 
+            context: "./api"
+            dockerfile: Dockerfile.dev
+        restart: on-failure
+        volumes: 
+            - /api/node_modules
+            - ./api:/api
+    client:
+        stdin_open: true
+        build:
+            context: "./client/apache-server"
+            dockerfile: Dockerfile.dev
+        restart: on-failure
+        volumes:
+            - ./client/apache-server/scrip.php:/client/scrip.php
+            - ./client/php/src:/var/www/html/
+            - ./client/apache-server/php.ini:/usr/local/etc/php/php.ini
+    nginx:
+        restart: always
+        build: 
+            context: ./nginx
+            dockerfile: Dockerfile.dev
+        ports: 
+            - "8000:80"
+        depends_on: 
+            - api
+    
