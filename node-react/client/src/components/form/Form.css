@@ -1,0 +1,79 @@
+.Form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 30px;
+    background-color: rgb(18, 8, 38);
+    padding-bottom: 30px;
+}
+.Form__controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+  
+.Form__control label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.Form__control input {
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 20rem;
+    max-width: 100%;
+}
+
+.Form__actions_active {
+    text-align: right;
+}
+
+.Form__actions_active button {
+    font: inherit;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: 1px solid #00575d;
+    background-color: #09ca80;
+    border: 1px solid black;
+    color: white;
+    border-radius: 12px;
+    margin-right: 1rem;
+    }
+    
+.Form__actions_active button:hover,
+.Form__actions_active button:active {
+    background-color: #510674;
+    border-color: white;
+}
+
+.Form__actions_active button.alternative {
+    color: #220131;
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.Form__actions_active button.alternative:hover,
+.Form__actions_active button.alternative:active {
+    background-color: #ddb3f8;
+    border-color: white;
+}
+
+.Form__actions_inactive {
+    text-align: right;
+}
+
+.Form__actions_inactive button {
+    font: inherit;
+    padding: 0.5rem 1rem;
+    border: 1px solid #002224;
+    background-color: #05593879;
+    border: 1px solid black;
+    color: white;
+    border-radius: 12px;
+    margin-right: 1rem;
+}
