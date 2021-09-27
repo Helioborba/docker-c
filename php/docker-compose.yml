@@ -18,9 +18,12 @@ services:
             dockerfile: Dockerfile.dev
         restart: on-failure
         volumes:
-            - ./client/apache-server/scrip.php:/client/scrip.php
-            - ./client/php/src:/var/www/html/
-            - ./client/apache-server/php.ini:/usr/local/etc/php/php.ini
+            - ./client/php/src:/var/www/html
+        environment: 
+            - hostname=us-cdbr-east-04.cleardb.com
+            - user=b4b78724dfa36d
+            - password=55c1e22b
+            - db=heroku_a166eef70043d0b
     nginx:
         restart: always
         build: 
@@ -30,4 +33,5 @@ services:
             - "8000:80"
         depends_on: 
             - api
+            - client
     

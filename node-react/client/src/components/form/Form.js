@@ -19,10 +19,10 @@ class Fib extends Component {
   
 
   async fetchIndexes() {
-    const seenIndexes = await axios.get('/api/sistema/get_test');
-    console.log(seenIndexes)
+    const mensagem = await axios.get('/api/sistema/get_test');
+    console.log(mensagem)
     this.setState({
-      seenIndexes: seenIndexes.data
+      seenIndexes: mensagem.indice
     });
   }
   
@@ -52,24 +52,10 @@ class Fib extends Component {
 
   renderSeenIndexes() {
     try {
-      return this.state.seenIndexes.map(({ indice }) => indice).join(', ');
+      return this.state.seenIndexes;
     } catch (err){
       console.log(err)
     }
-  }
-
-  renderValues() {
-    const entries = [];
-
-    for (let key in this.state.values) {
-      entries.push(
-        <div key={key}>
-          For index {key} I calculated {this.state.values[key]}
-        </div>
-      );
-    }
-
-    return entries;
   }
 
   render() {
@@ -78,7 +64,7 @@ class Fib extends Component {
         <form onSubmit={this.handleSubmit}>
             <div className='Form__controls'>
                 <div className='Form__control'>
-                    <label>Insira o número:</label>
+                    <label>Digite uma mensagem:</label>
                     <input value={this.state.index} onChange={(event) => this.setState({ index: event.target.value })}/>
                 </div>
             </div>

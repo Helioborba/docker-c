@@ -1,14 +1,17 @@
 .App {
   display: flex;
-  text-align: center;
-  background-color: #515255;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #282c34;
+  height: 100vh;
 }
 
 .App-main {
   background-color: #303030;
   padding: 1rem;
-  margin: 2rem auto;
-  width: 50rem;
+  margin: 1rem 1rem 5rem 1rem;
+  width: 60rem;
   max-width: 95%;
   border-radius: 12px;
   text-align: center;
