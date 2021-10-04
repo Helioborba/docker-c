@@ -1,3 +1,5 @@
 node_modules
 .eslintcache
 ./client/.eslintcache
+./node-react/client2
+./node-react/client3

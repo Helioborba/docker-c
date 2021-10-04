@@ -1,8 +1,12 @@
+// Parece que vai ser necessário o useRef
+
+
 import React from 'react';
 import axios from 'axios';
 import './Form.css'
 
 function Form() {
+  // O PROBLEMA ESTA AQUI, STATE DESSA FORMA É DEPRACATED
   const state = {
     seenIndexes: [],
     values: {},
@@ -11,13 +15,15 @@ function Form() {
     class: 'Form__actions_active'
   };
 
-  async function fetchIndexes() {
-    const mensagem = await axios.get('/api/sistema/get_test');
-    console.log(mensagem);
-    this.setState({
-      seenIndexes: mensagem.indice
-    });
-  }
+  // async function fetchIndexes() {
+  //   const mensagem = await axios.get('/api/sistema/get_test');
+  //   console.log(mensagem);
+  //   this.setState({
+  //     seenIndexes: mensagem.indice
+  //   });
+  // }
+
+  
   
   async function handleSubmit(event) {
     event.preventDefault(); 

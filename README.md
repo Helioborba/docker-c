@@ -10,13 +10,13 @@ Todas as versões contêm uma Compose file para recriar no ambiente de desenvolv
 1. Node-React : Esta versão contém o node como servidor (API) e o client é o react, com nginx para as chamadas. (Note: Até o momento só existem simulações básicas no sistema e simples de customizar)
     - <a href="https://docker-n.herokuapp.com/">Link de demonstração</a>
 
-2. PHP/Apache : Esta versão contém o php (sem frameworks) rodando no apache com o nginx para chamadas diretas ao servidor; no momento há apenas um site de exemplo.
+2. PHP-FPM : Esta versão contém o php (sem frameworks) rodando com o nginx para chamadas diretas ao servidor; no momento há apenas um site de exemplo.
 
 ## Planned Features
 
 - Suporte para o Flask
 - Suporte deploy na AWS
-- Trocar a imagem PHP por uma mais compacta
+- ~~Trocar a imagem PHP por uma mais compacta~~
 
 ## Docker Images
 ### As imagens utilizadas variam entre Alpine e Debian.
@@ -25,8 +25,8 @@ Todas as versões contêm uma Compose file para recriar no ambiente de desenvolv
   - <a href='https://hub.docker.com/layers/node/library/node/16.5.0-alpine3.11/images/sha256-707e82e59cfa4559f86dfa53d09649bf6fcfe8620eba2ad9030ab7790e3507b2?context=explore'>Imagem Node/React</a>
   - <a href='https://hub.docker.com/layers/nginx/library/nginx/latest/images/sha256-0b5b438edb8be60c445a89a4c9043681ea16ef1cfcc0e9c168c059d76fb8e04e?context=explore'>Latest do nginx</a>
   
-- PHP/Apache : A imagem do PHP/Apache roda em Debian já contendo os dois (php:7.4-apache), o nginx utiliza a original que é baseada em alpine (nginx:latest).
-  - <a href='https://hub.docker.com/layers/php/library/php/7.4.23-apache/images/sha256-5c6c6677fb465d4c0d267aa48d664847e87dbe5370c60caad522a4b841704907?context=explore'>Imagem PHP/Apache</a>
+- PHP-FPM : A imagem do PHP-FPM roda em Alpine(3.13), o nginx utiliza a original que é baseada também em alpine (nginx:latest).
+  - <a href='https://hub.docker.com/layers/php/library/php/7.3.28-fpm-alpine3.13/images/sha256-4b825e35e5aff1d749eccfef777662d366ecb3b0138178f5914b68fe4ba6ab6d?context=explore'>Imagem PHP-FPM</a>
   - <a href='https://hub.docker.com/layers/nginx/library/nginx/latest/images/sha256-0b5b438edb8be60c445a89a4c9043681ea16ef1cfcc0e9c168c059d76fb8e04e?context=explore'>Latest do nginx</a>
 
 ## Deployment
@@ -43,5 +43,4 @@ Para iniciar a produção utilizando os templates é recomendado ler a documenta
 
 ## Additional Information
 
-O nginx está sendo empregado como reverse proxy e belt balancer para as chamadas do servidor/client.
-A imagem do PHP já contém o Apache e é um pouco pesada por conter a imagem feita com o Debian.
+O nginx está sendo empregado como reverse proxy e belt balancer para as chamadas do servidor/client no caso do node.
