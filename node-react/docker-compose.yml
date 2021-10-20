@@ -13,12 +13,12 @@ services:
     client:
         stdin_open: true
         build:
-            context: "./client"
+            context: "./client3"
             dockerfile: Dockerfile.dev
         restart: on-failure
         volumes:
-            - /client/node_modules
-            - ./client:/client
+            - /client3/node_modules
+            - ./client3:/client3
     nginx:
         restart: always
         build: 

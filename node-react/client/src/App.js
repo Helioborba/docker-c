@@ -6,11 +6,13 @@ import Form from './components/form/Form'
 function App() {
   return (
     <Router>
-      <div className='App'>
-          <div className="App-main">
-              <Form></Form>
-          </div>
-      </div>
+      <React.Fragment>
+        <div className='App'>
+            <div className="App-main">
+                <Form></Form>
+            </div>
+        </div>
+      </React.Fragment>
     </Router>
   );
 }
