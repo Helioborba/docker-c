@@ -1,0 +1,45 @@
+.button {
+    font: inherit;
+    cursor: pointer;
+    text-align: right;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgb(0, 0, 0);
+    background-color: rgb(25, 56, 133);
+    color: white;
+    border-radius: 12px;
+    margin-right: 1rem;
+}
+    
+.button:hover,
+.button:active {
+    background-color: rgb(46, 97, 225);
+    border-color: white;
+}
+
+/* not used yet */
+.button.alternative {
+    color: #220131;
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.button.alternative:hover,
+.button.alternative:active {
+    background-color: #ddb3f8;
+    border-color: white;
+}
+/*  */
+
+button:disabled,
+button:focus:disabled,
+button:hover:disabled,
+button:active:disabled {
+    font: inherit;
+    padding: 0.5rem 1rem;
+    background-color: #2b2c30;
+    border: 1px solid #161718;
+    color: white;
+    border-radius: 12px;
+    margin-right: 1rem;
+    cursor: not-allowed;
+}
