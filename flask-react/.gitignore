@@ -3,3 +3,4 @@ node_modules
 /client/.eslintcache
 /client2/
 /client3/
+/api/env

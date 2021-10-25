@@ -44,5 +44,5 @@ def favicon():
 # colocar a api para o port 5000
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=5000)
-# interessante; caso o host nao seja especificado e for ser utilizado o composer, sem o 0.0.0.0 vai causar bug (nao encontrado)
+# interessante; caso o host nao seja especificado e for utilizado o composer sem o 0.0.0.0, sera causado um bug (nao encontrado)
 

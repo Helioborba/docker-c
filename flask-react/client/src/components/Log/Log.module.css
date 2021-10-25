@@ -1,4 +1,4 @@
-.Form {
+.Log {
     display: flex;
     color: white;
     align-items: center;
@@ -9,22 +9,7 @@
     padding-bottom: 30px;
 }
 
-/* seria bom colocar este main no card, já que os outros usam a mesma configuaracao */
-.Form__main {
-    background-color: #0c2214;
-    padding: 1rem;
-    margin: 2rem auto;
-    width: 50rem;
-    max-width: 95%;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
-}
-.Form:nth-last-child(3) {
-    margin-left: auto;
-    background-color: aliceblue;
-}
-.Form__controls {
+.Log__controls {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
@@ -32,19 +17,10 @@
     text-align: left;
 }
   
-.Form__control label {
+.Log__control label {
     font-weight: bold;
     margin-bottom: 0.5rem;
     display: block;
-}
-
-.Form__control input {
-    font: inherit;
-    padding: 0.5rem;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    width: 20rem;
-    max-width: 100%;
 }
 
 .button {

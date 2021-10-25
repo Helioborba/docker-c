@@ -1,4 +1,4 @@
-import React,{useReducer, useState} from 'react';
+import React,{useState} from 'react';
 import './App.css';
 import { BrowserRouter as Router} from 'react-router-dom';
 import Form from './components/form/Form'

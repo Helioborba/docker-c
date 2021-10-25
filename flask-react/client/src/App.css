@@ -9,6 +9,8 @@
 }
 
 .App-main {
+  display: flex;
+  flex-direction: column;
   background-color: #303030;
   padding: 1rem;
   margin: 1rem 1rem 5rem 1rem;
@@ -17,6 +19,7 @@
   border-radius: 12px;
   text-align: center;
   box-shadow: 0 1px 8px rgba(173, 173, 173, 0.25);
+  gap: 5px;
 }
 
 .App-logo {

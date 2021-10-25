@@ -1,6 +1,10 @@
 #!/bin/bash
 
 ###### PYTHON #######
+## Cria o virtual env na area caso nao exista
+
+## CRIAR AQUI O CODIGO
+
 ## Iniciar Venv
 checar() { #Checa se o venv esta ativo (no caso, o venv TEM de se chamar venv (ou se quiser mudar o nome no script em si) para funcionar)
 	if [[ "$VIRTUAL_ENV" != "" ]];
