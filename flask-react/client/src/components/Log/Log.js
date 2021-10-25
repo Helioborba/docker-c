@@ -1,27 +1,15 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 // import axios from 'axios';
-import style from './Form.module.css'
+import style from './Log.module.css'
 import Card from '../UI/Card/Card';
-import FormView from './FormView';
 import Button from '../UI/Button/Button';
-const Form = (props) => {
-  
-  const useMensagem = useRef();
+
+const Log = (props) => {
   const [formValidador,SetFormValidador] = useState(false);
 
-  // async fetchIndexes() {
-  //   const mensagem = await axios.get('/api/sistema/get_test');
-  //   console.log(mensagem)
-  //   this.setState({
-  //     seenIndexes: mensagem.indice
-  //   });
-  // }
-  
   // useReducer vai vir a ser util por causa da quantidade de estados sendo utilizados pelo handler (botao/form/component-separado) 
   const handleSubmit = (event) => {
     event.preventDefault(); 
-    props.setMensagem(useMensagem.current.value);
-    SetFormValidador(true)
     // await axios.post('/api/sistema/post_test', {
     //   indice: this.state.index,
     // }).then((res)=>{
@@ -43,20 +31,16 @@ const Form = (props) => {
 
   return (
     <Card className={style.Form}>
-      <form onSubmit={handleSubmit} className={style.Form__main}>
+      <div className={style.div__main}>
           <div className={style.Form__controls} >
               <div className={style.Form__control}>
-                  <label>Digite uma mensagem:</label>
-                  <input type='text' id='mensagem' ref={useMensagem}/>
+                  <label>Logue os dados:</label>
+                  <Button type='submit' disabled={false}>Logar dados</Button>
               </div>
           </div>
-          <div className={`${style.button}`}>
-            <Button type='submit' disabled={formValidador}>{!formValidador === true ? 'ENVIAR' : 'ENVIADO'}</Button>
-          </div>
-      </form>
-      <FormView></FormView>
+      </div>
     </Card>
   );
 }
 
-export default Form;
+export default Log;

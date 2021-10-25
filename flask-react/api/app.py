@@ -41,7 +41,8 @@ def error404(e):
 def favicon(): 
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
-# colocar a api para o port 3000
+# colocar a api para o port 5000
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=3000)
+    app.run(host='0.0.0.0',port=5000)
+# interessante; caso o host nao seja especificado e for ser utilizado o composer, sem o 0.0.0.0 vai causar bug (nao encontrado)
 

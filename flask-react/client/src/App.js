@@ -2,6 +2,7 @@ import React,{useReducer, useState} from 'react';
 import './App.css';
 import { BrowserRouter as Router} from 'react-router-dom';
 import Form from './components/form/Form'
+import Log from  './components/Log/Log'
 import MensagemContext from './store/mensagem-context';
 function App() {
   // const mensagemReducer = (state,action) => {
@@ -21,6 +22,8 @@ function App() {
           <div className='App'>
               <div className="App-main">
                   <Form setMensagem={setMensagem}></Form>
+                  {/* este de baixo é apenas para visualizar gets  */}
+                  <Log setMensagem={setMensagem}></Log>
               </div>
           </div>
         </MensagemContext.Provider>

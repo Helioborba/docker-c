@@ -4,7 +4,8 @@
   align-items: center;
   justify-content: center;
   background-color: #282c34;
-  height: 100vh;
+  min-height: 100vh
+  /* background-size:cover */
 }
 
 .App-main {

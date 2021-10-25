@@ -1,2 +1,2 @@
-# Implementation of flask!
-React will also be using the modern functions instead of class based comps.
+# Implementação do flask
+Também vai conter o primeiro modelo de react utilizando a forma moderna de componentes; funções ao invés de classes.
