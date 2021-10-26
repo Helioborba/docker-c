@@ -1,0 +1,20 @@
+{
+    "cadastros": [
+        {
+            "id":"1",
+            "usuario": "borba"
+        },
+        {
+            "id":"2",
+            "usuario": "francis"
+        },
+        {
+            "id":"3",
+            "usuario": "nomad"
+        },
+        {
+            "id":"4",
+            "usuario": "rald"
+        }
+    ]
+}

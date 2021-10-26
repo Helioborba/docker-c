@@ -1,5 +1,7 @@
 # Environment
 import os
+import json
+import time
 #Flask
 from flask import Flask, request, jsonify,send_from_directory
 
@@ -11,15 +13,17 @@ app = Flask(__name__)
 # Rotas
 @app.route('/', methods=['GET']) # home
 def home():
-    data = {"error":"you should not be here"}
-    return data
+    data = "you should not be here, neither seeing this message you know?"
+    return data # serve the data to the endpoint
 
 # test api
 @app.route('/mock', methods=['GET']) # api
 def dataApi():
-    data = {"nome":"helo","idade":"12","stuffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffqeqfqefefeqffewdfafrfafrafrfeafrfefefferf":"staaaer","sssstuff":"sdaterer","stdauff":"stedwr","stufffq":"stewqr","stuqweff":"stfer"}
-    print("teve um request")
-    return jsonify(data)
+    filename = os.path.join(app.static_folder, 'mock.json') # looks for file direc
+    with open(filename) as json_file: 
+        data = json.load(json_file) # open and process data file
+    time.sleep(10)
+    return jsonify(data) # serve the data to the endpoint
 
 # test api
 @app.route('/mock_post', methods=['POST']) # api

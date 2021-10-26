@@ -8,7 +8,6 @@ services:
             dockerfile: Dockerfile.dev
         restart: on-failure
         volumes: 
-            - /api/node_modules
             - ./api:/api
     client:
         stdin_open: true
