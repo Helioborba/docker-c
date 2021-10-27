@@ -26,8 +26,16 @@ def dataApi():
     return jsonify(data) # serve the data to the endpoint
 
 # test api
+@app.route('/mock_no_value', methods=['GET']) # api
+def noDataApi():
+    data = {}
+    time.sleep(3)
+    return jsonify(data) # serve the data to the endpoint
+
+# test api
 @app.route('/mock_err', methods=['GET']) # api
 def dataErr():
+    time.sleep(3)
     return Response(
         "bad gateway", status=403
     ) # serve the data to the endpoint

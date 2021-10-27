@@ -6,45 +6,26 @@ import Button from '../UI/Button/Button';
 import ViewLog from './ViewLog';
 import ErrorCard from '../UI/ErrorCard/ErrorCard';
 
-const logReducer = (state,action) => {
-  return {}
-}
 const View = (props) => {
   const [viewDados,setViewDados] = useState([]); // receber get da api
   const [carregamento, setCarregamento] = useState(false);
   const [error, setError] = useState(null);
-  const [log, dispatchLog] = useReducer(logReducer,'')
-  // useReducer vai vir a ser util por causa da quantidade de estados sendo utilizados pelo handler (botao/form/component-separado) 
-  async function handleView() {
-    setCarregamento(true);
-    setError(null);
-    try {
-      const res = await fetch("/api/mock_err");
-      if (!res.ok) {
-        // Erro customizado
-        const error = new Error("There is an error in the response from the service"); 
-        error.status = res.status;
-        error.message =  res.statusText;
-        throw error; // Criar um objeto contendo as informacoes para serem logadas pelo componente ErrorCard
-      };
+  const [log, dispatchLog] = useReducer(logReducer,'');
 
-      const dados = await res.json();
-      const dadosProntos = dados.cadastros.map( (valores) => {
-        return {
-          id: valores.id,
-          usuario: valores.usuario
-        };
-      });
-      setViewDados(dadosProntos);
-    } catch (error) {
-      setError( {status:error.status,message:error.message} );
-      console.log("message" + error.message);
-      console.log(error);
-    }
-    setCarregamento(false);
+  // useReducer vai vir a ser util por causa da quantidade de estados sendo utilizados pelo handler (botao/form/component-separado) 
+  const handleDados = async ()  => {  
+    dispatchLog({type:"USER_CLICK",val:"/api/mock"});
   }
+
+  const handleErro = async () => {  
+    dispatchLog({type:"USER_CLICK",val:"/api/mock_err"});
+  }
+
+  const handleNada = async () => {  
+    dispatchLog({type:"USER_CLICK",val:"/api/mock_no_value"});
+  }
+
   // Esta funcao retorna os componentes
-  
   const componenteDados = () => { 
     return ( viewDados.map( (values) => {
       return ( <ViewLog 
@@ -54,19 +35,55 @@ const View = (props) => {
       );
     }))
   };
+
+  // Redutor
+  async function logReducer(state,action) {
+    if (action.type === "USER_CLICK") {
+      setCarregamento(true);
+      setError(null);
+      try {
+        const res = await fetch(action.val);
+        if (!res.ok) {
+          // Erro customizado
+          const error = new Error("There is an error in the response from the service"); 
+          error.status = res.status;
+          error.message =  res.statusText;
+          throw error; // Criar um objeto contendo as informacoes para serem logadas pelo componente ErrorCard
+        };
+        let dadosProntos = []
+        const dados = await res.json();
+        if (Object.keys(dados).length > 0) {
+            dadosProntos = dados.cadastros.map( (valores) => {
+            return {
+              id: valores.id,
+              usuario: valores.usuario
+            };
+          });
+        }
+        setViewDados(dadosProntos);
+      } catch (error) {
+        setError( {status:error.status,message:error.message} );
+        console.log("message" + error.message);
+        console.log(error);
+      }
+      setCarregamento(false);
+    }
+  }
+  
   
   return (
     <Card className={style.View}>
         <div className={style.View__controls} >
             <div className={style.View__control}>
                 <label>Logue os dados:</label>
-                <Button type='submit' disabled={false} onClick={handleView}>Logar dados</Button>
-                <Button type='submit' disabled={false} onClick={handleView}>Logar erro</Button>
-                <Button type='submit' disabled={false} onClick={handleView}>Logar nada</Button>
+                <Button type='submit' disabled={false} onClick={handleDados}>Logar dados</Button>
+                <Button type='submit' disabled={false} onClick={handleErro}>Logar erro</Button>
+                <Button type='submit' disabled={false} onClick={handleNada}>Logar nada</Button>
                 {!carregamento && !error && componenteDados()}
-                {!carregamento && !error && viewDados.length === 0}
+                {!carregamento && !error && viewDados.length === 0 && <p>Não foi encontrado valor</p>}
                 {!carregamento && error && <ErrorCard status={error.status} message={error.message}></ErrorCard>}
                 {carregamento && <p>Loading...</p>}
+                
             </div>
         </div>
     </Card>
