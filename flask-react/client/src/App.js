@@ -1,6 +1,5 @@
 import React,{useState} from 'react';
 import './App.css';
-import { BrowserRouter as Router} from 'react-router-dom';
 import Form from './components/form/Form'
 import View from  './components/View/View'
 import MensagemContext from './store/mensagem-context';
@@ -16,21 +15,19 @@ function App() {
   // const [mensagem, dispatchMsg] = useReducer(mensagemReducer,'')
   
   return (
-    <Router>
-      <React.Fragment>
-        <MensagemContext.Provider value={{
-          mensagem: mensagem
-        }}>
-          <div className='App'>
-              <div className="App-main">
-                  <Form setMensagem={setMensagem}></Form>
-                  {/* este de baixo é apenas para visualizar gets  */}
-                  <View></View>
-              </div>
-          </div>
-        </MensagemContext.Provider>
-      </React.Fragment>
-    </Router>
+    <React.Fragment>
+      <MensagemContext.Provider value={{
+        mensagem: mensagem
+      }}>
+        <div className='App'>
+            <div className="App-main">
+                <Form setMensagem={setMensagem}></Form>
+                {/* este de baixo é apenas para visualizar gets  */}
+                <View></View>
+            </div>
+        </div>
+      </MensagemContext.Provider>
+    </React.Fragment>
   );
 }
 
