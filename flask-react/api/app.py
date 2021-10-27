@@ -22,7 +22,7 @@ def dataApi():
     filename = os.path.join(app.static_folder, 'mock.json') # looks for file direc
     with open(filename) as json_file: 
         data = json.load(json_file) # open and process data file
-    time.sleep(10)
+    time.sleep(3)
     return jsonify(data) # serve the data to the endpoint
 
 # test api
