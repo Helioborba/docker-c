@@ -3,7 +3,7 @@ import os
 import json
 import time
 #Flask
-from flask import Flask, request, jsonify,send_from_directory
+from flask import Flask, request, jsonify,send_from_directory,Response
 
 # Inicializacão do flask
 app = Flask(__name__)
@@ -26,6 +26,12 @@ def dataApi():
     return jsonify(data) # serve the data to the endpoint
 
 # test api
+@app.route('/mock_err', methods=['GET']) # api
+def dataErr():
+    return Response(
+        "bad gateway", status=403
+    ) # serve the data to the endpoint
+# test api
 @app.route('/mock_post', methods=['POST']) # api
 def dataA():
     input_json = request.get_json(force=True) 
@@ -35,7 +41,7 @@ def dataA():
     resolucao = {'mensagem':'funcionou!'}
     return jsonify(resolucao)
 
-
+# error handler
 @app.errorhandler(404) # Pagina caso não seja encontrado a requisição no servidor
 def error404(e):
     data = {"error":"nothing here"}
