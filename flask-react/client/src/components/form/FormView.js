@@ -1,14 +1,12 @@
-import React, { useContext } from 'react';
-import MensagemContext from '../../store/mensagem-context';
+import React from 'react';
 import styles from './FormView.module.css'
 
 const FormView = (props) => {
-    const ctx = useContext(MensagemContext);
     return(
         <div className={styles.View}>
             <header className={styles.header}>
-                <h3>A mensagem é:</h3>
-                <p>{ctx.mensagem}</p>
+                <h3>O Usuário {props.usuario} postou:</h3>
+                <p>{props.mensagem}</p>
             </header>
         </div>
     );

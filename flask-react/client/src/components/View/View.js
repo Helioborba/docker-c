@@ -60,7 +60,7 @@ const View = (props) => {
         const res = await fetch(url);
         if (!res.ok) {
           // Erro customizado
-          const error = new Error("There is an error in the response from the service"); 
+          const error = new Error("Ocorreu um erro"); 
           error.status = res.status;
           error.message =  res.statusText;
           throw error; // Criar um objeto contendo as informacoes para serem logadas pelo componente ErrorCard
