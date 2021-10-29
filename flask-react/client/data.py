@@ -1,6 +1,6 @@
 dapra = [{
-    "usuario": "frafrfef",
-    "mensagem": "frafra"
+    "usuario": "             ",
+    "mensagem": "             "
 },{
     "usuario": "frafrfef",
     "mensagem": "frafra"
@@ -16,6 +16,9 @@ alkaDif = {
 newvalue = []
 val = 0
 for tup in dapra:
+    for key,value in tup.items():
+        if key == '' or value == '':
+            print("there was a null")
     val += 1
     tup.update(id=str(val))
     newvalue.append( {

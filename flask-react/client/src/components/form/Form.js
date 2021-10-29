@@ -13,28 +13,20 @@ const Form = (props) => {
   const useMensagem = useRef();
   const useUsuario = useRef();
   const [formValidador,SetFormValidador] = useState(false);
-  // async fetchIndexes() {
-  //   const mensagem = await axios.get('/api/sistema/get_test');
-  //   console.log(mensagem)
-  //   this.setState({
-  //     seenIndexes: mensagem.indice
-  //   });
-  // }
-  
-  // useReducer vai vir a ser util por causa da quantidade de estados sendo utilizados pelo handler (botao/form/component-separado) 
+   
   const handleSubmit = async (event) => {
     event.preventDefault(); 
 
+    // Objeto contendo os dados para o post
     const postDados = {
       usuario: useUsuario.current.value,
       mensagem: useMensagem.current.value
     }
 
+    // 
     SetFormValidador(true);
-    // setTimeout(() => SetFormValidador(false), 2000);
     try {
       const res = await postData('/api/mensagem_post',postDados);
-      console.log(res);
       if (!res.ok) {
         // Erro customizado
         const error = new Error("Ocorreu um erro"); 
@@ -42,7 +34,6 @@ const Form = (props) => {
         error.message =  res.statusText;
         throw error; // Criar um objeto contendo as informacoes para serem logadas pelo componente ErrorCard
       }; 
-      // Vamos checar se o json recebido tem algum valor, senão a função map não será execultada
       
     } catch (error) {
       alert("post error");
@@ -51,7 +42,7 @@ const Form = (props) => {
     SetFormValidador(false);
     // await axios.post('/api/sistema/post_test', {
     //   indice: this.state.index,
-    // }).then((res)=>{
+    // }).then((res) => {
     //   console.log("todos: ",res.data);
     //   this.state.estado = "Enviado";
     //   this.state.class = "Form__actions_inactive";
@@ -67,9 +58,9 @@ const Form = (props) => {
     // this.state.estado = "Enviado";
     //                  //////                      //
   };
-
+  
+  // A resposta Não está sendo processada para JSON!!
   async function postData(url, data) {
-    console.log("this is data",data);
     //- Default options are marked with *
     const response = await fetch(url, {
       method: 'POST', 
@@ -81,36 +72,31 @@ const Form = (props) => {
       },
       redirect: 'follow', 
       referrerPolicy: 'no-referrer', 
-      body: JSON.stringify(data) 
+      body: JSON.stringify(data)
     });
-    return response.json(); //- parses JSON response into native JavaScript objects
+    return response; //- RETORNAR O JSON RECEBIDO PELO REQUEST
   }
-  
-  // postData('https://example.com/answer', { answer: 42 })
-  //   .then(data => {
-  //     console.log(data); // JSON data parsed by `data.json()` call
-  //   });
 
-    const componenteDados = () => { 
-      return ( ctx.dadosProvider.map( (values) => {
-        return ( <FormView 
-          key={values.id}
-          usuario={values.usuario}
-          mensagem={values.mensagem}
-          />
-        );
-      }))
-    };
+  const componenteDados = () => { 
+    return ( ctx.dadosProvider.map( (values) => {
+      return ( <FormView 
+        key={values.id}
+        usuario={values.usuario}
+        mensagem={values.mensagem}
+        />
+      );
+    }))
+  };
 
   return (
     <Card className={style.Form}>
       <form onSubmit={handleSubmit} className={style.Form__main}>
           <div className={style.Form__controls}>
               <div className={style.Form__control}>
-                  <label>Digite uma mensagem:</label>
-                  <input type='text' id='mensagem' ref={useMensagem}/>
                   <label>Digite seu nome de Usuário</label>
                   <input type='text' id='usuario' ref={useUsuario}/>
+                  <label>Digite uma mensagem:</label>
+                  <input type='text' id='mensagem' ref={useMensagem}/>
               </div>
           </div>
           <div className={`${style.button}`}>

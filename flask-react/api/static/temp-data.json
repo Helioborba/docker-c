@@ -1,16 +1,9 @@
 [
     {
         "Row 1": {
-            "usuario": "gabriel@uninove.br",
-            "mensagem": "frafra",
+            "usuario": "",
+            "mensagem": "",
             "id": "1"
-        }
-    },
-    {
-        "Row 2": {
-            "usuario": "gabriel@uninove.br",
-            "mensagem": "frafra",
-            "id": "2"
         }
     }
 ]

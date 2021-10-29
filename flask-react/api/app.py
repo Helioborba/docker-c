@@ -6,17 +6,27 @@ import sys
 #Flask
 from flask import Flask, request, jsonify,send_from_directory,Response
 
+# Funcoes auxiliares
 def printData(data):
     try:
         print("this is data: ",data,file=sys.stderr)
     except:
-        
         print("error",file=sys.stderr)
+
+def printLocal():
+    print("this is storage ",localStorage,file=sys.stderr)
+
+def customResponse(action,statusCode,):
+    res =  Response(action)
+    res.status = 200
+    res.headers['Content-Type'] = 'application/json' 
+    res.mimetype = 'application/json'
+    time.sleep(5)
+    return res
+    
 # Inicializacão do flask
 app = Flask(__name__)
 localStorage = []
-def printLocal():
-    print("this is storage ",localStorage,file=sys.stderr)
 # basedir = os.path.abspath(os.path.dirname(__file__)) usado para escrever arquivos
 
 # Rotas
@@ -33,6 +43,11 @@ def mensagemPost():
     newvalue = []
     val = 0
     for tup in localStorage:
+        # Checar caso haja um valor null e retornar um response de "valor errado"
+        for key,value in tup.items():
+            if key == '' or value == '':
+                return customResponse()
+                
         val += 1
         tup.update(id=str(val))
         newvalue.append( {
@@ -44,8 +59,13 @@ def mensagemPost():
         json.dump(newvalue, file, ensure_ascii=False, indent=4)
     printData(data)
     printLocal()
-    res = {"status":"recebido"}
-    return jsonify(res) # serve the data to the endpoint
+    res =  Response("Data stored")
+    res.status = 200
+    res.headers['Content-Type'] = 'application/json' 
+    res.mimetype = 'application/json'
+    time.sleep(5)
+    return res
+     # serve the data to the endpoint
 
 @app.route('/mensagem_get', methods=['GET']) # home
 def mensagemGet():
