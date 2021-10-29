@@ -2,12 +2,21 @@
 import os
 import json
 import time
+import sys
 #Flask
 from flask import Flask, request, jsonify,send_from_directory,Response
 
+def printData(data):
+    try:
+        print("this is data: ",data,file=sys.stderr)
+    except:
+        
+        print("error",file=sys.stderr)
 # Inicializacão do flask
 app = Flask(__name__)
 localStorage = []
+def printLocal():
+    print("this is storage ",localStorage,file=sys.stderr)
 # basedir = os.path.abspath(os.path.dirname(__file__)) usado para escrever arquivos
 
 # Rotas
@@ -19,12 +28,28 @@ def home():
 # Rotas
 @app.route('/mensagem_post', methods=['POST']) # home
 def mensagemPost():
-    localStorage.append(request.get_json(force=True))
+    data = request.get_json(force=True)
+    localStorage.append(data)
+    newvalue = []
+    val = 0
+    for tup in localStorage:
+        val += 1
+        tup.update(id=str(val))
+        newvalue.append( {
+        f'Row {val}': tup
+    })
+    
+    filename = os.path.join(app.static_folder, 'temp-data.json')
+    with open(filename,'w',encoding='utf-8') as file:
+        json.dump(newvalue, file, ensure_ascii=False, indent=4)
+    printData(data)
+    printLocal()
     res = {"status":"recebido"}
     return jsonify(res) # serve the data to the endpoint
 
 @app.route('/mensagem_get', methods=['GET']) # home
 def mensagemGet():
+    time.sleep(5)
     return jsonify(localStorage) # serve the data to the endpoint
 
 

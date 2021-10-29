@@ -22,12 +22,33 @@ const Form = (props) => {
   // }
   
   // useReducer vai vir a ser util por causa da quantidade de estados sendo utilizados pelo handler (botao/form/component-separado) 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault(); 
 
+    const postDados = {
+      usuario: useUsuario.current.value,
+      mensagem: useMensagem.current.value
+    }
+
     SetFormValidador(true);
-    setTimeout(() => SetFormValidador(false), 2000);
-    fetch("",)
+    // setTimeout(() => SetFormValidador(false), 2000);
+    try {
+      const res = await postData('/api/mensagem_post',postDados);
+      console.log(res);
+      if (!res.ok) {
+        // Erro customizado
+        const error = new Error("Ocorreu um erro"); 
+        error.status = res.status;
+        error.message =  res.statusText;
+        throw error; // Criar um objeto contendo as informacoes para serem logadas pelo componente ErrorCard
+      }; 
+      // Vamos checar se o json recebido tem algum valor, senão a função map não será execultada
+      
+    } catch (error) {
+      alert("post error");
+      console.log("Error message " + error.message);
+    }
+    SetFormValidador(false);
     // await axios.post('/api/sistema/post_test', {
     //   indice: this.state.index,
     // }).then((res)=>{
@@ -47,22 +68,23 @@ const Form = (props) => {
     //                  //////                      //
   };
 
-  // async function postData(url = '', data = {}) {
-  //   // Default options are marked with *
-  //   const response = await fetch(url, {
-  //     method: 'POST', 
-  //     mode: 'cors', 
-  //     cache: 'no-cache', 
-  //     credentials: 'same-origin', 
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     redirect: 'follow', 
-  //     referrerPolicy: 'no-referrer', 
-  //     body: JSON.stringify(data) 
-  //   });
-  //   return response.json(); // parses JSON response into native JavaScript objects
-  // }
+  async function postData(url, data) {
+    console.log("this is data",data);
+    //- Default options are marked with *
+    const response = await fetch(url, {
+      method: 'POST', 
+      mode: 'cors', 
+      cache: 'no-cache', 
+      credentials: 'same-origin', 
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      redirect: 'follow', 
+      referrerPolicy: 'no-referrer', 
+      body: JSON.stringify(data) 
+    });
+    return response.json(); //- parses JSON response into native JavaScript objects
+  }
   
   // postData('https://example.com/answer', { answer: 42 })
   //   .then(data => {

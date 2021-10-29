@@ -20,7 +20,7 @@ export const MensagemContextProvider = (props) => {
     const providerDadosHandler = useCallback(async (event) => {
         setCarregamento(true);
         setError(null);
-        const dadosProntos = [];
+        let dadosProntos = [];
         try {
             const res = await fetch('/api/mensagem_get');
             if (!res.ok) {
