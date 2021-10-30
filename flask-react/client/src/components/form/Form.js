@@ -27,6 +27,8 @@ const Form = (props) => {
     SetFormValidador(true);
     try {
       const res = await postData('/api/mensagem_post',postDados);
+      const logRes = await res.text();
+      console.log("this is res ",logRes);
       if (!res.ok) {
         // Erro customizado
         const error = new Error("Ocorreu um erro"); 
