@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {MensagemContextProvider} from './store/mensagem-context';
+import {MensagemGetContextProvider} from './store/mensagem-get-context';
 
 ReactDOM.render(
   <React.StrictMode>
-    <MensagemContextProvider>
+    <MensagemGetContextProvider>
       <App />
-    </MensagemContextProvider>
+    </MensagemGetContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

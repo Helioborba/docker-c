@@ -5,14 +5,14 @@ import React, {useState,useEffect,useCallback} from 'react';
  * Context carregando a comunicacao com a API.
  * 
  */
-const MensagemContext = React.createContext({
+const MensagemGetContext = React.createContext({
     dadosProvider: [],
     errorProvider: null,
     carregamentoProvider: false,
     providerDadosHandler: async () => {}
 });
 
-export const MensagemContextProvider = (props) => {
+export const MensagemGetContextProvider = (props) => {
     const [dadosProvider,setDadosProvider] = useState([]); // enviar post, needs db
     const [carregamento, setCarregamento] = useState(false); // Manter o status de carregamento
     const [error, setError] = useState(null); // Checar caso haja erro, vai ser removido ao ampliar o redutor.
@@ -60,18 +60,18 @@ export const MensagemContextProvider = (props) => {
         return () => {
             clearTimeout(identifier);
         };
-    },[providerDadosHandler]);
+    },[providerDadosHandler,]);
 
     return(
-        <MensagemContext.Provider value={{
+        <MensagemGetContext.Provider value={{
             dadosProvider: dadosProvider,
             errorProvider: error,
             carregamentoProvider: carregamento,
             providerDadosHandler: providerDadosHandler
         }}>
         {props.children}
-        </MensagemContext.Provider>
+        </MensagemGetContext.Provider>
     )
 }
 
-export default MensagemContext;
+export default MensagemGetContext;

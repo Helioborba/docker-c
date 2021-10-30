@@ -4,7 +4,7 @@ import style from './Form.module.css'
 import Card from '../UI/Card/Card';
 import FormView from './FormView';
 import Button from '../UI/Button/Button';
-import MensagemContext from '../../store/mensagem-context';
+import MensagemContext from '../../store/mensagem-get-context';
 import ErrorCard from '../UI/ErrorCard/ErrorCard';
 
 const Form = (props) => {
@@ -14,7 +14,7 @@ const Form = (props) => {
   const useUsuario = useRef();
   const [formValidador,SetFormValidador] = useState(false);
    
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event,usuario,mensagem) => {
     event.preventDefault(); 
 
     // Objeto contendo os dados para o post
