@@ -20,9 +20,9 @@ export const MensagemContextProvider = (props) => {
     const providerDadosHandler = useCallback(async (event) => {
         setCarregamento(true);
         setError(null);
-        let dadosProntos = [];
+        let dadosProntos;
         try {
-            const res = await fetch('/api/mensagem_get');
+            const res = await fetch('/api/store/mensagem_get');
             if (!res.ok) {
                 const error = new Error("Houve um erro"); 
                 error.status = res.status;
@@ -30,21 +30,23 @@ export const MensagemContextProvider = (props) => {
                 throw error;
             }
             const dados = await res.json();
-            console.log(dados);
+            console.log("this si ",dados);
 
             if (Object.keys(dados).length > 0) {
-                dadosProntos = dados.usuario.map( (valores) => {
+                console.log("chegou aqui")
+                dadosProntos = dados.map( (valores) => {
+                    
                     return {
-                        id: valores.id,
                         usuario: valores.usuario,
-                        mensagem: valores.mensagem
+                        mensagem: valores.mensagem,
+                        id: valores.id
                     };
                 });
                 setDadosProvider(dadosProntos);
             }
         } catch (error) {
             setError( {status:error.status,message:error.message} );
-            console.log("Error message " + error.message);
+            console.log("Mensagem de erro: " + error.message);
         }
         setCarregamento(false);
     },[]);

@@ -4,7 +4,7 @@ import os
 #Flask
 from router import app  # Aqui se encontra o app principal
 
-fileDir = os.path.join(app.static_folder, 'temp-data.json')
+basedir = os.path.abspath(os.path.dirname(__file__)) # file path
 
 # colocar a api para o port 5000
 if __name__ == '__main__':

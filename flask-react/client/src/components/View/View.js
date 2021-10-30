@@ -26,19 +26,19 @@ const View = (props) => {
 
   
   const handleDados = ()  => {  
-    dispatchLog({type:"USER_CLICK",val:"/api/mock"});
+    dispatchLog({type:"USER_CLICK",val:"/api/mocks/mock"});
     // O setCarregamento vai sumir quando o reducer controlar todos os estados do app.
     // nao é necessário de qualquer forma esses varios carregamentos, só estão aqui para não ser renderizado o "não foi encontrado valor no momento" de forma errado.
     setCarregamento(true); // Começar a carregar 
   }
   
   const handleErro = () => {  
-    dispatchLog({type:"USER_CLICK",val:"/api/mock_err"});
+    dispatchLog({type:"USER_CLICK",val:"/api/mocks/mock_err"});
     setCarregamento(true); // Começar a carregar
   }
   
   const handleNada = () => {  
-    dispatchLog({type:"USER_CLICK",val:"/api/mock_no_value"});
+    dispatchLog({type:"USER_CLICK",val:"/api/mocks/mock_no_value"});
     setCarregamento(true); // Começar a carregar
   }
   

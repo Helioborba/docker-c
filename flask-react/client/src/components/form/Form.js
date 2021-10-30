@@ -26,7 +26,7 @@ const Form = (props) => {
     // 
     SetFormValidador(true);
     try {
-      const res = await postData('/api/mensagem_post',postDados);
+      const res = await postData('/api/store/mensagem_post',postDados);
       const logRes = await res.text();
       console.log("this is res ",logRes);
       if (!res.ok) {
