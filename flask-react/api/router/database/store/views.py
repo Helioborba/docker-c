@@ -13,14 +13,14 @@ store_blueprint = Blueprint('store',__name__) # main blue
 @store_blueprint.route('/mensagem_post', methods=['POST'])
 def mensagemPost():
     data = request.get_json(force=True)
+    for key,value in data.items():
+            if key == '' or value == '':
+                raise ApiRaisedError(code=400,description='Empty data received!')
     localStorage.append(data)
     jsonValues = []
     val = 0
     for tup in localStorage:
         # Checar caso haja um valor null e retornar um response de "valor errado"
-        for key,value in tup.items():
-            if key == '' or value == '':
-                raise ApiRaisedError(code=400,description='Empty data received!')
         val += 1
         tup.update(id=str(val))
         jsonValues.append({

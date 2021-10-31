@@ -4,11 +4,14 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {MensagemGetContextProvider} from './store/mensagem-get-context';
+import {MensagemPostContextProvider} from './store/mensagem-post-context';
 
 ReactDOM.render(
   <React.StrictMode>
     <MensagemGetContextProvider>
-      <App />
+      <MensagemPostContextProvider>
+        <App />
+      </MensagemPostContextProvider>
     </MensagemGetContextProvider>
   </React.StrictMode>,
   document.getElementById('root')

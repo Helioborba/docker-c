@@ -1,22 +1,92 @@
 // Pacotes
-import React,{useState,useRef} from "react";
-
+import React,{useState} from "react";
+import {postData} from "./helper-funcs/post";
 // Criar contexto com os valores para serem utilizados no app
 const MensagemPostContext = React.createContext({
+    formValidador: false,
+    handleSubmit: async (value={}) => {}
+});
 
-})
-
-// Retornar o componente pronto já com o provider ativo + valores
+/**
+ * Componente com o Contexto para realizar posts 
+ * 
+ */
 export const MensagemPostContextProvider = (props) => {
+    // Retornar o componente pronto já com o provider ativo + valores //
+    
+    const [formValidador,SetFormValidador] = useState(false);
     
 
+    // Variaveis sendo recebidas nao estao sendo trocadas pois pode talver ocorrer um erro
+    const postHandleSubmit = async (dados = {}) => {
+        
+        // Objeto contendo os dados para o post
+        const postDados = dados;
 
+        SetFormValidador(true);
+        
 
+        try {
+            console.log("data to post: ",postDados);
+            const res = await postData('/api/store/mensagem_post',postDados);
+            const logRes = await res.text();
+            console.log("this is res ",logRes);
+            if (!res.ok) {
+                // Erro customizado
+                const error = new Error("Ocorreu um erro"); 
+                error.status = res.status;
+                error.message =  res.statusText;
+                throw error; // Criar um objeto contendo as informacoes para serem logadas pelo componente ErrorCard
+            }; 
+            // Vai dizer se a request deu certo, para confirmar
+            
+        } catch (error) {
+            alert("post error");
+            console.log("Error message " + error.message);
+        }
+        SetFormValidador(false);
+       
+        // await axios.post('/api/sistema/post_test', {
+        //   indice: this.state.index,
+        // }).then((res) => {
+        //   console.log("todos: ",res.data);
+        //   this.state.estado = "Enviado";
+        //   this.state.class = "Form__actions_inactive";
+        // }).catch( (err) => {
+        //   console.log(err)
+        // })
 
+        // bloquear de enviar depois de um envio
+        // const button = document.querySelector('button');
+        // button.disabled = true;
+
+        // Essa parte é para checar se funcionou o post //
+        // this.state.estado = "Enviado";
+        //                  //////                      //
+    };
+    
+    // A resposta Não está sendo processada para JSON!!
+    // async function postData(url, data) {
+    //     //- Default options are marked with *
+    //     const response = await fetch(url, {
+    //         method: 'POST', 
+    //         mode: 'cors', 
+    //         cache: 'no-cache', 
+    //         credentials: 'same-origin', 
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         redirect: 'follow', 
+    //         referrerPolicy: 'no-referrer', 
+    //         body: JSON.stringify(data)
+    //     });
+    //     return response; //- RETORNAR O JSON RECEBIDO PELO REQUEST
+    // }
 
     return (
         <MensagemPostContext.Provider value={{
-
+            formValidador: formValidador,
+            handleSubmit: postHandleSubmit
         }}>
             {props.children}
         </MensagemPostContext.Provider>

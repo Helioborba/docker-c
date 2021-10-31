@@ -4,25 +4,24 @@ import json
 import time
 from helpers.errorHandlers.responses import ApiRaisedError
 from flask import Blueprint,jsonify,request
+from app import basedir # root dir
 
 mocks_blueprint = Blueprint('mocks',__name__)
 
 # Test endpoints
 @mocks_blueprint.route('/mock', methods=['GET']) # api
 def dataApi():
-    fileDir = os.path.join(app.fileDir.static_folder, 'mock.json') # looks for file direc
+    fileDir = os.path.join(basedir,'static','mock.json') # looks for file direc
     with open(fileDir) as json_file: 
         data = json.load(json_file) # open and process data file
     time.sleep(3)
     return jsonify(data) # serve the data to the endpoint,
-
 
 @mocks_blueprint.route('/mock_no_value', methods=['GET']) # api
 def noDataApi():
     data = {}
     time.sleep(3)
     return jsonify(data)
-
 
 @mocks_blueprint.route('/mock_err', methods=['GET']) # api
 def dataErr():

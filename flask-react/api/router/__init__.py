@@ -5,7 +5,6 @@ from helpers.errorHandlers.responses import ApiRaisedError,createJsonRaisedError
 
 app = Flask(__name__) # PRINCIPAL, cria a seção do flask!
 
-
 # Blueprint (routes)
 from router.database.store.views import store_blueprint
 from router.mocks.views import mocks_blueprint
