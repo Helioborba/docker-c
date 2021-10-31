@@ -23,8 +23,6 @@ export const MensagemGetContextProvider = (props) => {
         setCarregamento(true);
         setError(null);
 
-        
-
         try {
             const res = await fetch('/api/store/mensagem_get');
             if (!res.ok) {
@@ -44,6 +42,9 @@ export const MensagemGetContextProvider = (props) => {
                     };
                 });
                 setDadosProvider(dadosProntos);
+            } else {
+                // ESSE ELSE É Essencial para o re-render do get APÓS delete
+                setDadosProvider([])
             }
         } catch (error) {
             setError( {status:error.status,message:error.message} );

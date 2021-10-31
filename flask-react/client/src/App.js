@@ -8,9 +8,9 @@ function App() {
     <React.Fragment>
         <div className='App'>
             <div className="App-main">
+                <View></View>
                 <Form></Form>
                 {/* este de baixo é apenas para visualizar gets  */}
-                <View></View>
             </div>
         </div>
     </React.Fragment>

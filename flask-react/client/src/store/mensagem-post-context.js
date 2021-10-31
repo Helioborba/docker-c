@@ -3,7 +3,8 @@ import React,{useState} from "react";
 import {postData} from "./helper-funcs/post";
 // Criar contexto com os valores para serem utilizados no app
 const MensagemPostContext = React.createContext({
-    formValidador: false,
+    formValidadorSubmit: false,
+    formValidadorDel: false,
     handleSubmit: async (value={}) => {}
 });
 
@@ -14,18 +15,20 @@ const MensagemPostContext = React.createContext({
 export const MensagemPostContextProvider = (props) => {
     // Retornar o componente pronto já com o provider ativo + valores //
     
-    const [formValidador,SetFormValidador] = useState(false);
-    
-
+    const [formValidadorSubmit,setFormValidadorSubmit] = useState(false);
+    const [formValidadorDel,setFormValidadorDel] = useState(false)
     // Variaveis sendo recebidas nao estao sendo trocadas pois pode talver ocorrer um erro
     const postHandleSubmit = async (dados = {}) => {
         
         // Objeto contendo os dados para o post
         const postDados = dados;
+        Object.values(postDados).forEach(val => { if(val === 'DELETE') {
+            setFormValidadorDel(true);
+        }});
 
-        SetFormValidador(true);
-        
-
+        Object.values(postDados).forEach(val => { if(val === 'SUBMIT') {
+            setFormValidadorSubmit(true);
+        }});
         try {
             console.log("data to post: ",postDados);
             const res = await postData('/api/store/mensagem_post',postDados);
@@ -44,7 +47,8 @@ export const MensagemPostContextProvider = (props) => {
             alert("post error");
             console.log("Error message " + error.message);
         }
-        SetFormValidador(false);
+        setFormValidadorSubmit(false);
+        setFormValidadorDel(false);
        
         // await axios.post('/api/sistema/post_test', {
         //   indice: this.state.index,
@@ -85,7 +89,8 @@ export const MensagemPostContextProvider = (props) => {
 
     return (
         <MensagemPostContext.Provider value={{
-            formValidador: formValidador,
+            formValidadorSubmit: formValidadorSubmit,
+            formValidadorDel: formValidadorDel,
             handleSubmit: postHandleSubmit
         }}>
             {props.children}

@@ -1,5 +1,5 @@
 import os
-import time
+import time # utilizado para simular demora entre respostas 
 import json
 from helpers.logs import logs
 from flask import Blueprint,jsonify,request,Response
@@ -13,6 +13,15 @@ store_blueprint = Blueprint('store',__name__) # main blue
 @store_blueprint.route('/mensagem_post', methods=['POST'])
 def mensagemPost():
     data = request.get_json(force=True)
+    if data.get('request_safe') == 'DELETE_ALL_DATA':
+        localStorage.clear()
+        res =  Response("All data deleted")
+        res.status = 200
+        res.headers['Content-Type'] = 'application/json' 
+        res.mimetype = 'application/json'
+        time.sleep(3)
+        return res
+    
     for key,value in data.items():
             if key == '' or value == '':
                 raise ApiRaisedError(code=400,description='Empty data received!')
@@ -35,9 +44,11 @@ def mensagemPost():
     res.status = 200
     res.headers['Content-Type'] = 'application/json' 
     res.mimetype = 'application/json'
+    time.sleep(3)
     return res
      # serve the data to the endpoint
 
 @store_blueprint.route('/mensagem_get', methods=['GET'])
 def mensagemGet():
+    time.sleep(3)
     return jsonify(localStorage) # serve the data to the endpoint
