@@ -143,11 +143,11 @@ const Form = (props) => {
             <Button type='submit' disabled={ctxPost.formValidadorSubmit}>{!ctxPost.formValidadorSubmit === true ? 'ENVIAR' : 'ENVIADO'}</Button>
           </div>
       </form>
-      <Button type='submit' onClick={deleteHandler} disabled={ctxPost.formValidadorDel}>{!ctxPost.formValidadorDel === true ? 'DELETE' : 'DELETED'}</Button>
+      <Button type='submit' onClick={deleteHandler} disabled={ctxPost.formValidadorDel}>{!ctxPost.formValidadorDel === true ? 'DELETE' : 'DELETING'}</Button>
+      {ctxGet.carregamentoProvider && <p>Loading...</p>}
       {!ctxGet.errorProvider && componenteDados()}
       {!ctxGet.carregamentoProvider && !ctxGet.errorProvider && ctxGet.dadosProvider.length === 0 && <p>Não foi encontrado valor</p>}
       {!ctxGet.carregamentoProvider && ctxGet.errorProvider && <ErrorCard status={ctxGet.errorProvider.status} message={ctxGet.errorProvider.message}></ErrorCard>}
-      {ctxGet.carregamentoProvider && <p>Loading...</p>}
     </Card>
   );
 }
