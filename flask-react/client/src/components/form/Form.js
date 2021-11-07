@@ -51,71 +51,7 @@ const Form = (props) => {
     const submit = (postData) => { ctxPost.handleSubmit(postData);};
     sentDataDecorator(submit,postData);
   }
-  // const handleSubmit = async (event,usuario,mensagem) => {
-  //   event.preventDefault(); 
-
-  //   //- Objeto contendo os dados para o post
-  //   const postDados = {
-  //     usuario: useUsuario.current.value,
-  //     mensagem: useMensagem.current.value
-  //   }
-
-    
-  //   SetFormValidador(true);
-  //   try {
-  //     const res = await postData('/api/store/mensagem_post',postDados);
-  //     const logRes = await res.text();
-  //     console.log("this is res ",logRes);
-  //     if (!res.ok) {
-  //       //- Erro customizado
-  //       const error = new Error("Ocorreu um erro"); 
-  //       error.status = res.status;
-  //       error.message =  res.statusText;
-  //       throw error; //- Criar um objeto contendo as informacoes para serem logadas pelo componente ErrorCard
-  //     }; 
-      
-  //   } catch (error) {
-  //     alert("post error");
-  //     console.log("Error message " + error.message);
-  //   }
-  //   SetFormValidador(false);
-  //   // await axios.post('/api/sistema/post_test', {
-  //   //   indice: this.state.index,
-  //   // }).then((res) => {
-  //   //   console.log("todos: ",res.data);
-  //   //   this.state.estado = "Enviado";
-  //   //   this.state.class = "Form__actions_inactive";
-  //   // }).catch( (err) => {
-  //   //   console.log(err)
-  //   // })
-
-  //   // bloquear de enviar depois de um envio
-  //   // const button = document.querySelector('button');
-  //   // button.disabled = true;
-
-  //   // Essa parte é para checar se funcionou o post //
-  //   // this.state.estado = "Enviado";
-  //   //                  //////                      //
-  // };
   
-  // A resposta Não está sendo processada para JSON!!
-  // async function postData(url, data) {
-  //   //- Default options are marked with *
-  //   const response = await fetch(url, {
-  //     method: 'POST', 
-  //     mode: 'cors', 
-  //     cache: 'no-cache', 
-  //     credentials: 'same-origin', 
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     redirect: 'follow', 
-  //     referrerPolicy: 'no-referrer', 
-  //     body: JSON.stringify(data)
-  //   });
-  //   return response; //- RETORNAR O JSON RECEBIDO PELO REQUEST
-  // }
-
   // Criar componente com as informacoes do get
   const componenteDados = () => { 
     return ( ctxGet.dadosProvider.map( (values) => {

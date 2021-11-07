@@ -1,6 +1,7 @@
 // Pacotes
 import React,{useState} from "react";
 import {postData} from "./helper-funcs/post";
+
 // Criar contexto com os valores para serem utilizados no app
 const MensagemPostContext = React.createContext({
     formValidadorSubmit: false,
@@ -40,24 +41,24 @@ export const MensagemPostContextProvider = (props) => {
                 error.status = res.status;
                 error.message =  res.statusText;
                 throw error; // Criar um objeto contendo as informacoes para serem logadas pelo componente ErrorCard
-            }; 
-            // Vai dizer se a request deu certo, para confirmar
+            };     
             
         } catch (error) {
             alert("post error");
             console.log("Error message " + error.message);
-        }
+        }    
         setFormValidadorSubmit(false);
         setFormValidadorDel(false);
-       
+
+        // Vai dizer se a request deu certo, para confirmar
         // await axios.post('/api/sistema/post_test', {
-        //   indice: this.state.index,
+            //   indice: this.state.index,    
         // }).then((res) => {
-        //   console.log("todos: ",res.data);
+        //   console.log("todos: ",res.data);    
         //   this.state.estado = "Enviado";
         //   this.state.class = "Form__actions_inactive";
         // }).catch( (err) => {
-        //   console.log(err)
+        //   console.log(err)    
         // })
 
         // bloquear de enviar depois de um envio
@@ -67,18 +68,18 @@ export const MensagemPostContextProvider = (props) => {
         // Essa parte é para checar se funcionou o post //
         // this.state.estado = "Enviado";
         //                  //////                      //
-    };
+    };    
     
     // A resposta Não está sendo processada para JSON!!
     // async function postData(url, data) {
-    //     //- Default options are marked with *
+    //     //- Default options are marked with *    
     //     const response = await fetch(url, {
-    //         method: 'POST', 
+    //         method: 'POST',     
     //         mode: 'cors', 
     //         cache: 'no-cache', 
     //         credentials: 'same-origin', 
     //         headers: {
-    //             'Content-Type': 'application/json'
+    //             'Content-Type': 'application/json'    
     //         },
     //         redirect: 'follow', 
     //         referrerPolicy: 'no-referrer', 
@@ -94,8 +95,9 @@ export const MensagemPostContextProvider = (props) => {
             handleSubmit: postHandleSubmit
         }}>
             {props.children}
-        </MensagemPostContext.Provider>
+        </MensagemPostContext.Provider>        
     )
-}
+}    
 
 export default MensagemPostContext;
+
