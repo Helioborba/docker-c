@@ -34,7 +34,7 @@ export const MensagemGetContextProvider = (props) => {
                     setDadosProvider(dadosProntos);
                 } else {
                     // ESSE ELSE É Essencial para o re-render do get APÓS delete
-                    setDadosProvider([])
+                    setDadosProvider([]);
                 }
             })
             const configGet = {
