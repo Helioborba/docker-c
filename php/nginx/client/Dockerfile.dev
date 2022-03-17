@@ -33,13 +33,13 @@ RUN { \
 
 # Copiar e modificar as permissões para utilizar no APP
 COPY --chown=www-data:www-data ./src /var/www/src
-WORKDIR /var/www/src
+# WORKDIR /var/www/src
 
 # Serve para expor pelo server as portas, porém nao tem outro app rodando junto
 EXPOSE 80 443
 
 # Criar permissões para poder execultar o script de inicialização
-COPY ./config/iniciar-servicos.sh /etc/iniciar-servicos.sh
-RUN chmod +x /etc/iniciar-servicos.sh
+COPY ./dev/iniciar-servicos-dev.sh /etc/iniciar-servicos-dev.sh
+RUN chmod +x /etc/iniciar-servicos-dev.sh
 
 CMD /bin/sh -c "/etc/iniciar-servicos-dev.sh" 
