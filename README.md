@@ -1,4 +1,11 @@
 # Ecosistema de containers com Docker-compose
+
+## Updates
+
+O repositório está sem aplicações na heroku no momento ( referente a este <a href="https://help.heroku.com/RSBRUH58/removal-of-heroku-free-product-plans-faq">link</a>)
+
+
+
 ## Overview
 
 Este repositório contém formas de hospedar websites/webapp's utilizando o Travis CI para testes e deploy na Heroku por meio de containers (Docker).
